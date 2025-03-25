@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tower Defense</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Startseite -->
+        <div id="start" class="content active">
+            <div class="start-wrapper">
+                <div class="header" onclick="showPage('start')">Skibidi Royle</div>
+                <!-- Beschreibung der einzelnen Optionen -->
+                <!-- Drei klickbare Boxen zur Navigation -->
+                <div class="start-container">
+                    <div class="description">
+                        <h2>Spiel starten</h2>
+                        <p>Spiele gegen den Bot, stelle die Schwierigkeit ein und erlebe actiongeladene Tower Defense-Action.</p>
+                        <div class="box" onclick="showPage('game')">
+                            <h3>Spiel Starten</h3>
+                        </div>
+                    </div>
+                    <div class="description">
+                        <h2>Belohnungen</h2>
+                        <p>Schau dir deine freigeschalteten Belohnungen an und löse neue Items ein.</p>
+                        <div class="box" onclick="showPage('rewards')">
+                            <h3>Belohnungen</h3>
+                        </div>
+                    </div>
+                    <div class="description">
+                        <h2>Deck-Management</h2>
+                        <p>Gestalte dein Deck, verbessere deine Einheiten und passe deine Strategie an.</p>
+                        <div class="box" onclick="showPage('deck')">
+                            <h3>Deck-Management</h3>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Spielfeldseite -->
+        <div id="game" class="content">
+            <div class="header" onclick="showPage('start')">Spiel</div>
+            <!-- Vertikale Navigation: Linker Button und rechter Button -->
+            <div class="nav left">
+                <button onclick="showPage('rewards')">Belohnungen</button>
+            </div>
+            <div class="nav right">
+                <button onclick="showPage('deck')">Deck</button>
+            </div>
+        </div>
+
+        <!-- Belohnungsseite -->
+        <div id="rewards" class="content">
+            <div class="header" onclick="showPage('start')">Belohnungen</div>
+            <!-- Vertikale Navigation: Linker Button und rechter Button -->
+            <div class="nav left">
+                <button onclick="showPage('game')">Spiel</button>
+            </div>
+            <div class="nav right">
+                <button onclick="showPage('deck')">Deck</button>
+            </div>
+        </div>
+
+        <!-- Deck-Managementseite -->
+        <div id="deck" class="content">
+            <div class="header" onclick="showPage('start')">Deck</div>
+            <!-- Vertikale Navigation: Linker Button und rechter Button -->
+            <div class="nav left">
+                <button onclick="showPage('game')">Spiel</button>
+            </div>
+            <div class="nav right">
+                <button onclick="showPage('rewards')">Belohnungen</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
