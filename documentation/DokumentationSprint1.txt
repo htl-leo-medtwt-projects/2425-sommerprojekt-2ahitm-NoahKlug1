@@ -1,0 +1,4 @@
+Dokumentation Semester Projekt: 
+
+Sprint 1: 
+	Es wurden mehrere Sprite Images hinzugefügt. Das Grundgerüst für alle Html Seiten wurden 	erstellt. Die Startseite wurde mit Inhalt gefüllt. Das Grundprinzip des Spiels wurde 	entwickelt jedoch noch nicht in den Code auf in dem Repo eingefügt. Außerdem wurden einige 	Charaktere designt und mehr Konzepte erstellt für einzigartige Charaktere.
