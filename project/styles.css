@@ -10,7 +10,8 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #222;
+    background-image: url(img/designImg/startSiteBg.jpg);
+    background-size: cover;
     color: white;
     position: relative;
 }
@@ -23,7 +24,7 @@ body {
 /* Header: Klickbar, führt immer zur Startseite */
 .header {
     cursor: pointer;
-    font-size: 24px;
+    font-size: 400%;
     font-weight: bold;
     margin-bottom: 20px;
 }
@@ -36,19 +37,19 @@ body {
     transform: translateY(-50%);
 }
 .nav.left {
-    left: 5px;
+    left: 1px;
     transform: rotate(90deg);
 }
 .nav.right {
     transform: rotate(-90deg); 
-    right: 5px;
+    right: 1px;
 }
 .nav button {
     font-size: 200%;
     font-weight: bolder;
     height: 10vh;
     padding: 1vh;
-    margin: 0px;
+    margin: 0 -50px;
     background: #444;
     border: none;
     color: white;
