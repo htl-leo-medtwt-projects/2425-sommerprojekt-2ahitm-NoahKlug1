@@ -45,6 +45,29 @@
         <!-- Spielfeldseite -->
         <div id="game" class="content">
             <div class="header" onclick="showPage('start')">Spiel</div>
+            <div id="gameContainer">
+                <canvas id="gameCanvas" width="800" height="500"></canvas>
+                <div id="ui">
+                  <div id="info">
+                    <span>Player Big Tower HP: <span id="playerTowerHP">1000</span></span>
+                    &nbsp;&nbsp;|&nbsp;&nbsp;
+                    <span>Enemy Big Tower HP: <span id="enemyTowerHP">1000</span></span>
+                    &nbsp;&nbsp;|&nbsp;&nbsp;
+                    <span>Elixir: <span id="playerElixir">0</span> / 10</span>
+                    <div id="elixirProgressContainer">
+                      <div id="elixirProgress"></div>
+                    </div>
+                  </div>
+                  <div id="cardHand"></div>
+                  <div id="spellIndicator"></div>
+                  <div id="instructions">
+                    <p>
+                      Wähle eine Karte aus deiner Hand und klicke dann in den erlaubten Bereich, um sie auszuspielen.<br>
+                      Falls du den Blitz wählst, wird ein Kreis angezeigt, der den Wirkungsradius markiert.
+                    </p>
+                  </div>
+                </div>
+              </div>
             <!-- Vertikale Navigation: Linker Button und rechter Button -->
             <div class="nav left">
                 <button onclick="showPage('rewards')">Belohnungen</button>
