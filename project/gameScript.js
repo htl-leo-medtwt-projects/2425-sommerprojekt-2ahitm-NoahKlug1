@@ -43,14 +43,14 @@ const cardPool = [
   "skeleton", "wizard", "minion", "goblin", "blitz"
 ];
 const unitTypes = {
-  swordsman: { cost: 3, speed: 20, hp: 600, damage: 150, width: 30, height: 30, color: "cyan", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 20, image: {src: "startSiteBg.jpg"} },
-  archer:    { cost: 3, speed: 20, hp: 250, damage: 120, width: 30, height: 30, color: "green", attackCooldown: 1.2, perceptionRadius: 150, attackRange: 80, image: {src: "startSiteBg.jpg"} },
-  giant:     { cost: 5, speed: 10, hp: 4232, damage: 100, width: 40, height: 40, color: "purple", attackCooldown: 2.0, perceptionRadius: 150, attackRange: 20, image: {src: "startSiteBg.jpg"} },
-  knight:    { cost: 4, speed: 20, hp: 1703, damage: 140, width: 30, height: 30, color: "yellow", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 20, image: {src: "startSiteBg.jpg"} },
-  skeleton:  { cost: 1, speed: 30, hp: 100, damage: 100, width: 20, height: 20, color: "gray", attackCooldown: 0.8, perceptionRadius: 100, attackRange: 30, image: {src: "startSiteBg.jpg"} },
-  wizard:    { cost: 6, speed: 40, hp: 500, damage: 200, width: 30, height: 30, color: "magenta", attackCooldown: 1.5, perceptionRadius: 150, attackRange: 50, image: {src: "startSiteBg.jpg"} },
-  minion:    { cost: 3, speed: 40, hp: 120, damage: 100, width: 25, height: 25, color: "pink", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 40, image: {src: "startSiteBg.jpg"} },
-  goblin:    { cost: 2, speed: 40, hp: 200, damage: 100, width: 25, height: 25, color: "darkgreen", attackCooldown: 0.8, perceptionRadius: 150, attackRange: 30, image: {src: "startSiteBg.jpg"}},
+  swordsman: { cost: 3, speed: 20, hp: 600, damage: 150, width: 30, height: 30, color: "cyan", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 20, image: {src: "img/sprites/barbarGenerell.png"} },
+  archer:    { cost: 3, speed: 20, hp: 250, damage: 120, width: 30, height: 30, color: "green", attackCooldown: 1.2, perceptionRadius: 150, attackRange: 80, image: {src: "img/sprites/archerBlue.png"} },
+  giant:     { cost: 5, speed: 10, hp: 4232, damage: 100, width: 40, height: 40, color: "purple", attackCooldown: 2.0, perceptionRadius: 150, attackRange: 20, image: {src: "img/sprites/rieseGenerell.png"} },
+  knight:    { cost: 4, speed: 20, hp: 1703, damage: 140, width: 30, height: 30, color: "yellow", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 20, image: {src: "img/sprites/ritterBlue.png"} },
+  skeleton:  { cost: 1, speed: 30, hp: 100, damage: 100, width: 20, height: 20, color: "gray", attackCooldown: 0.8, perceptionRadius: 100, attackRange: 30, image: {src: "img/sprites/skelletGenerell.png"} },
+  wizard:    { cost: 6, speed: 40, hp: 500, damage: 200, width: 30, height: 30, color: "magenta", attackCooldown: 1.5, perceptionRadius: 150, attackRange: 50, image: {src: "img/sprites/barbarGenerell.png"} },
+  minion:    { cost: 3, speed: 40, hp: 120, damage: 100, width: 25, height: 25, color: "pink", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 40, image: {src: "img/sprites/barbarGenerell.png"} },
+  goblin:    { cost: 2, speed: 40, hp: 200, damage: 100, width: 25, height: 25, color: "darkgreen", attackCooldown: 0.8, perceptionRadius: 150, attackRange: 30, image: {src: "img/sprites/barbarGenerell.png"}},
   blitz:     { cost: 4 } // Spell – kein Unit
 };
 
@@ -584,10 +584,10 @@ function draw() {
 
     if (!tower.image) {
       if(tower.owner == 'enemy'){
-        tower.image = preloadImage('towerRed.png')
+        tower.image = preloadImage("img/sprites/towerRed.png")
       }
       else{
-        tower.image = preloadImage("startSiteBg.jpg");
+        tower.image = preloadImage("img/sprites/towerRed.png");
       }
     }
     

@@ -1,0 +1,82 @@
+
+
+#gameContainer {
+  margin: 20px auto;
+  width: 820px;
+}
+
+#gameCanvas {
+  background-color: #3c763d;
+  border: 2px solid #444;
+  display: block;
+  margin: 0 auto;
+}
+
+#ui {
+  margin-top: 10px;
+}
+#info {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* Elixir-Fortschrittsbalken */
+#elixirProgressContainer {
+  width: 200px;
+  height: 10px;
+  background-color: #555;
+  margin: 5px auto;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+}
+#elixirProgress {
+  width: 0%;
+  height: 100%;
+  background-color: #ff9800;
+  transition: width 0.2s;
+}
+.shake {
+  animation: shake 0.5s infinite;
+}
+@keyframes shake {
+  0% { transform: translateX(0px); }
+  25% { transform: translateX(-2px); }
+  50% { transform: translateX(2px); }
+  75% { transform: translateX(-2px); }
+  100% { transform: translateX(0px); }
+}
+
+/* Kartenhand */
+#cardHand {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.card {
+  background-color: #555;
+  border: 2px solid #777;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  min-width: 80px;
+}
+.card.selected {
+  background-color: #ff9800;
+  border-color: #ffb74d;
+}
+.card p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* Spell-Indikator (Blitz) */
+#spellIndicator {
+  position: absolute;
+  pointer-events: none;
+  border: 2px solid white;
+  border-radius: 50%;
+  display: none;
+}
