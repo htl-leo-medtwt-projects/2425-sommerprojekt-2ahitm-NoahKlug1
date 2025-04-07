@@ -14,14 +14,14 @@
         <!-- Startseite -->
         <div id="start" class="content active">
             <div class="start-wrapper">
-                <div class="header" onclick="showPage('start')">Skibidi Royle</div>
+                <div class="header" onclick="showPage('start') ">Skibidi Royle</div>
                 <!-- Beschreibung der einzelnen Optionen -->
                 <!-- Drei klickbare Boxen zur Navigation -->
                 <div class="start-container">
                     <div class="description">
                         <h2>Spiel starten</h2>
                         <p>Spiele gegen den Bot, stelle die Schwierigkeit ein und erlebe actiongeladene Tower Defense-Action.</p>
-                        <div class="box" onclick="showPage('game')">
+                        <div class="box" onclick="showPage('game'), startGame()">
                             <h3>Spiel Starten</h3>
                         </div>
                     </div>
@@ -78,7 +78,7 @@
             <div class="header" onclick="showPage('start')">Belohnungen</div>
             <!-- Vertikale Navigation: Linker Button und rechter Button -->
             <div class="nav left">
-                <button onclick="showPage('game')">Spiel</button>
+                <button onclick="showPage('game'),startGame()">Spiel</button>
             </div>
             <div class="nav right">
                 <button onclick="showPage('deck')">Deck</button>
@@ -90,7 +90,7 @@
             <div class="header" onclick="showPage('start')">Deck</div>
             <!-- Vertikale Navigation: Linker Button und rechter Button -->
             <div class="nav left">
-                <button onclick="showPage('game')">Spiel</button>
+                <button onclick="showPage('game'), startGame()">Spiel</button>
             </div>
             <div class="nav right">
                 <button onclick="showPage('rewards')">Belohnungen</button>

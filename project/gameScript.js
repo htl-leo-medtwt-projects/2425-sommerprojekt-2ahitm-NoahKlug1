@@ -602,4 +602,23 @@ function gameLoop(timestamp) {
     ctx.fillText("Game Over", canvas.width / 2 - 120, canvas.height / 2);
   }
 }
-requestAnimationFrame(gameLoop);
+
+function startGame(){
+  requestAnimationFrame(gameLoop);
+  lastTime = performance.now();
+  gameOver = false;
+  playerElixir = 5;
+  elixirTimer = 0;
+  while (fixedDeck.length < 8) {
+    let card = cardPool[Math.floor(Math.random() * cardPool.length)];
+    if (!fixedDeck.includes(card)) fixedDeck.push(card);
+  }
+  botElixir = 5;
+  botElixirTimer = 0;
+  playerHand = fixedDeck.slice(0, 4);
+  enemyHand = fixedDeck.slice(0, 4);
+  selectedCard = null;
+  playerUnits = [];
+  enemyUnits = [];
+  enemyCardTimer = 0;
+}
