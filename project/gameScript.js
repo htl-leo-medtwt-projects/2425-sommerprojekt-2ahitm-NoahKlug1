@@ -41,14 +41,14 @@ let cardPool = [
   "skeleton", "wizard", "minion", "goblin"
 ];
 const unitTypes = {
-  swordsman: { cost: 3, speed: 20, hp: 600, damage: 150, width: 30, height: 30, color: "cyan", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 20, image: {run: "img/sprites/barbarGenerell.png", attack: "img/sprites/barbarGenerell.png",}},
-  archer:    { cost: 3, speed: 20, hp: 250, damage: 120, width: 30, height: 30, color: "green", attackCooldown: 1.2, perceptionRadius: 150, attackRange: 80, image: {run: "img/sprites/archerBlue.png", attack: "img/sprites/archerBlue.png"}},
-  giant:     { cost: 5, speed: 10, hp: 4232, damage: 100, width: 40, height: 40, color: "purple", attackCooldown: 2.0, perceptionRadius: 150, attackRange: 20, image: {run: "img/sprites/rieseGenerell.png", attack: "img/sprites/rieseGenerell.png"} },
-  knight:    { cost: 4, speed: 20, hp: 1703, damage: 140, width: 30, height: 30, color: "yellow", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 20, image: {run: "img/sprites/ritterBlue.png", attack: "img/sprites/ritterBlue.png"} },
-  skeleton:  { cost: 1, speed: 30, hp: 100, damage: 100, width: 20, height: 20, color: "gray", attackCooldown: 0.8, perceptionRadius: 100, attackRange: 30, image: {run: "img/sprites/skelletGenerell.png", attack: "img/sprites/skelletGenerell.png"} },
-  wizard:    { cost: 6, speed: 40, hp: 500, damage: 200, width: 30, height: 30, color: "magenta", attackCooldown: 1.5, perceptionRadius: 150, attackRange: 50, image: {run: "img/sprites/barbarGenerell.png", atttack: "img/sprites/barbarGenerell.png"} },
-  minion:    { cost: 3, speed: 40, hp: 120, damage: 100, width: 25, height: 25, color: "pink", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 40, image: {run: "img/sprites/barbarGenerell.png"}, attack:"img/sprites/barbarGenerell.png" },
-  goblin:    { cost: 2, speed: 40, hp: 200, damage: 100, width: 25, height: 25, color: "darkgreen", attackCooldown: 0.8, perceptionRadius: 150, attackRange: 30, image: {run: "img/sprites/barbarGenerell.png"}, attack:"img/sprites/barbarGenerell.png"}
+  swordsman: { cost: 3, speed: 20, hp: 600, damage: 150, width: 30, height: 30, color: "cyan", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 20, image: {src: "img/sprites/barbarGenerell.png"}, totalFrames: 3, frameSpeed: 25},
+  archer:    { cost: 3, speed: 20, hp: 250, damage: 120, width: 30, height: 30, color: "green", attackCooldown: 1.2, perceptionRadius: 150, attackRange: 80, image: {src: "img/sprites/archerBlue.png"}, totalFrames: 3, frameSpeed: 25},
+  giant:     { cost: 5, speed: 10, hp: 4232, damage: 100, width: 40, height: 40, color: "purple", attackCooldown: 2.0, perceptionRadius: 150, attackRange: 20, image: {src: "img/sprites/rieseGenerell.png"}, totalFrames: 3, frameSpeed: 25 },
+  knight:    { cost: 4, speed: 20, hp: 1703, damage: 140, width: 30, height: 30, color: "yellow", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 20, image: {src: "img/sprites/ritterBlue.png"}, totalFrames: 3, frameSpeed: 25 },
+  skeleton:  { cost: 1, speed: 30, hp: 100, damage: 100, width: 20, height: 20, color: "gray", attackCooldown: 0.8, perceptionRadius: 100, attackRange: 30, image: {src: "img/sprites/skelletGenerell.png"}, totalFrames: 3, frameSpeed: 25 },
+  wizard:    { cost: 6, speed: 40, hp: 500, damage: 200, width: 30, height: 30, color: "magenta", attackCooldown: 1.5, perceptionRadius: 150, attackRange: 50, image: {src: "img/sprites/barbarGenerell.png"}, totalFrames: 3, frameSpeed: 25 },
+  minion:    { cost: 3, speed: 40, hp: 120, damage: 100, width: 25, height: 25, color: "pink", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 40, image: {src: "img/sprites/barbarGenerell.png"}, totalFrames: 3, frameSpeed: 25 },
+  goblin:    { cost: 2, speed: 40, hp: 200, damage: 100, width: 25, height: 25, color: "darkgreen", attackCooldown: 0.8, perceptionRadius: 150, attackRange: 30, image: {src: "img/sprites/barbarGenerell.png"}, totalFrames: 3, frameSpeed: 25}
 };
 
 // Festes Deck (8 eindeutige Karten, einmal am Spielstart definiert)
@@ -113,15 +113,10 @@ function createUnit(owner, type, x, y) {
     attackRange: data.attackRange,
     flashTimer: 0,
     currentTarget: null,
-    runImageSrc: data.image.run,
-    attackImageSrc: data.image.attack, 
-    totalFrames: {
-      run: 2,
-      attack: 4
-    },
-    status: "run",
-    frameSpeed: 25,
-    frameCounter: 0,
+    imageSrc: data.image.src, 
+    totalFrames: data.totalFrames,
+    frameSpeed: data.frameSpeed,
+    frameCounter: 0
   };
 }
 // ---------------------------
@@ -404,13 +399,11 @@ function updateUnits(deltaTime) {
     if (minDist <= unit.attackRange && unit.attackTimer >= unit.attackCooldown) {
       target.hp -= unit.damage;  // Leben des Ziels verringern
       unit.attackTimer = 0;  // Angriffstimer zurücksetzen
-      unit.status = "attack";
       // Wenn das Ziel noch lebt und es eine feindliche Einheit ist, das Ziel blinken lassen
       if (target.hp > 0 && target.type !== undefined) {
         target.flashTimer = 0.2; // Flash-Effekt aktivieren
       }
     } else {
-      unit.status = "run";
       moveUnit(unit, deltaTime);  // Einheit weiterbewegen, wenn sie nicht angreifen kann
     }
   });
@@ -451,13 +444,11 @@ function updateUnits(deltaTime) {
     if (minDist <= unit.attackRange && unit.attackTimer >= unit.attackCooldown) {
       target.hp -= unit.damage;  // Leben des Ziels verringern
       unit.attackTimer = 0;  // Angriffstimer zurücksetzen
-      unit.status = "attack";
       // Wenn das Ziel noch lebt und es eine Spieler-Einheit ist, das Ziel blinken lassen
       if (target.hp > 0 && target.type !== undefined) {
         target.flashTimer = 0.2;  // Flash-Effekt aktivieren
       }
     } else {
-      unit.status = "run";
       moveUnit(unit, deltaTime);  // Feindliche Einheit weiterbewegen, wenn sie nicht angreifen kann
     }
   });
