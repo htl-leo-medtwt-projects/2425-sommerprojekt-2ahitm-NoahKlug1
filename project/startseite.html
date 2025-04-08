@@ -6,6 +6,8 @@
     <title>Skibidi Royale</title>
     <link rel="stylesheet" href="basicStyles.css">
     <link rel="stylesheet" href="gameStyle.css">
+    <link rel="stylesheet" href="deckStyle.css">
+    <script defer src="deckScript.js"></script>
     <script defer src="basicScript.js"></script>
     <script defer src="gameScript.js"></script>
 </head>
@@ -63,7 +65,7 @@
                   <div id="cardHand"></div>
                   <div id="spellIndicator"></div>
                 </div>
-              </div>
+            </div>
             <!-- Vertikale Navigation: Linker Button und rechter Button -->
             <div class="nav left">
                 <button onclick="showPage('rewards')">Belohnungen</button>
@@ -88,6 +90,25 @@
         <!-- Deck-Managementseite -->
         <div id="deck" class="content">
             <div class="header" onclick="showPage('start')">Deck</div>
+
+            <div id="deckTargetFrame" class="deckTargetFrame">
+                <div id="deckFrame1" class="deckFrameSection"></div>
+                <div id="deckFrame2" class="deckFrameSection"></div>
+            </div>
+
+            <button id="deckResetBtn" class="deckResetButton">Zurücksetzen</button>
+
+            <div class="deckContainer" id="deckBoxContainer"></div>
+
+            <!-- Info Modal -->
+            <div id="deckInfoModal">
+                <div id="deckInfoOverlay"></div>
+                <div id="deckInfoBox">
+                    <button id="deckCloseInfo">X</button>
+                    <h2 id="deckInfoTitle">Deck Info Titel</h2>
+                    <p id="deckInfoContent">Hier kommt der Info-Inhalt rein...</p>
+                </div>
+            </div>
             <!-- Vertikale Navigation: Linker Button und rechter Button -->
             <div class="nav left">
                 <button onclick="showPage('game'), startGame()">Spiel</button>

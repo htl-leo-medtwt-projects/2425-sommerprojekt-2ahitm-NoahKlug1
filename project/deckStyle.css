@@ -1,0 +1,198 @@
+.deckContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  max-width: 1000px;
+}
+
+.deckCardContainer {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #ffffff;
+  position: relative;
+  transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.deckCardContainer:hover {
+  transform: scale(1.05);
+  z-index: 1;
+}
+
+.deckCard {
+  text-align: center;
+  pointer-events: none;
+}
+
+.deckButtonsContainer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: none;
+  flex-direction: column;
+  z-index: 2;
+}
+
+.deckCardContainer:hover .deckButtonsContainer {
+  display: flex;
+}
+
+.deckButton {
+  padding: 6px;
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.deckButton:hover {
+  transform: scale(1.03);
+}
+
+.deckAddButton {
+  background-color: #007bff;
+  color: white;
+}
+
+.deckAddButton:hover {
+  background-color: #0056b3;
+}
+
+.deckInfoButton {
+  background-color: #e9ecef;
+}
+
+.deckInfoButton:hover {
+  background-color: #d6d8db;
+}
+
+.deckRemoveButton {
+  background-color: #dc3545;
+  color: white;
+}
+
+.deckRemoveButton:hover {
+  background-color: #a71d2a;
+}
+
+.deckResetButton {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.deckResetButton:hover {
+  background-color: #1e7e34;
+}
+
+.deckTargetFrame {
+  border: 2px dashed #555;
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #fff;
+}
+
+.deckFrameSection {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.deckTargetCard {
+  height: 80px;
+  padding: 10px;
+  background-color: #d1ffd1;
+  border: 1px solid #777;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s;
+}
+
+.deckTargetCard:hover {
+  box-shadow: 0 0 6px rgba(0,0,0,0.3);
+}
+
+.deckWobble {
+  animation: wobble 0.6s infinite;
+}
+
+@keyframes wobble {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(2deg); }
+  75% { transform: rotate(-2deg); }
+}
+
+.deckRemoveSmall {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 10px;
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+
+/* Modal */
+#deckInfoModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  display: none;
+}
+
+#deckInfoOverlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+
+#deckInfoBox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  max-width: 90%;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+#deckCloseInfo {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
