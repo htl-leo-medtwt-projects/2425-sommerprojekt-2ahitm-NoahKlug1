@@ -41,15 +41,16 @@ let cardPool = [
   "skeleton", "wizard", "minion", "goblin"
 ];
 const unitTypes = {
-  swordsman: { cost: 3, speed: 20, hp: 600, damage: 150, width: 30, height: 30, color: "cyan", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 20, image: {src: "img/sprites/barbarGenerell.png"}, totalFrames: 3, frameSpeed: 25},
-  archer:    { cost: 3, speed: 20, hp: 250, damage: 120, width: 30, height: 30, color: "green", attackCooldown: 1.2, perceptionRadius: 150, attackRange: 80, image: {src: "img/sprites/archerBlue.png"}, totalFrames: 3, frameSpeed: 25},
-  giant:     { cost: 5, speed: 10, hp: 4232, damage: 100, width: 40, height: 40, color: "purple", attackCooldown: 2.0, perceptionRadius: 150, attackRange: 20, image: {src: "img/sprites/rieseGenerell.png"}, totalFrames: 3, frameSpeed: 25 },
-  knight:    { cost: 4, speed: 20, hp: 1703, damage: 140, width: 30, height: 30, color: "yellow", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 20, image: {src: "img/sprites/ritterBlue.png"}, totalFrames: 3, frameSpeed: 25 },
-  skeleton:  { cost: 1, speed: 30, hp: 100, damage: 100, width: 20, height: 20, color: "gray", attackCooldown: 0.8, perceptionRadius: 100, attackRange: 30, image: {src: "img/sprites/skelletGenerell.png"}, totalFrames: 3, frameSpeed: 25 },
-  wizard:    { cost: 6, speed: 40, hp: 500, damage: 200, width: 30, height: 30, color: "magenta", attackCooldown: 1.5, perceptionRadius: 150, attackRange: 50, image: {src: "img/sprites/barbarGenerell.png"}, totalFrames: 3, frameSpeed: 25 },
-  minion:    { cost: 3, speed: 40, hp: 120, damage: 100, width: 25, height: 25, color: "pink", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 40, image: {src: "img/sprites/barbarGenerell.png"}, totalFrames: 3, frameSpeed: 25 },
-  goblin:    { cost: 2, speed: 40, hp: 200, damage: 100, width: 25, height: 25, color: "darkgreen", attackCooldown: 0.8, perceptionRadius: 150, attackRange: 30, image: {src: "img/sprites/barbarGenerell.png"}, totalFrames: 3, frameSpeed: 25}
+  swordsman: { cost: 3, speed: 20, hp: 600, damage: 150, width: 30, height: 30, color: "cyan", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 20, image: { srcRun: "img/sprites/barbarBlueRun.png", srcAttack: "img/sprites/barbarBlau.png" }, totalFramesRun: 2, totalFramesAttack: 3, frameSpeed: 25 },
+  archer:    { cost: 3, speed: 20, hp: 250, damage: 120, width: 30, height: 30, color: "green", attackCooldown: 1.2, perceptionRadius: 150, attackRange: 80, image: { srcRun: "img/sprites/archerBlueRun.png", srcAttack: "img/sprites/archerBlue.png" }, totalFramesRun: 2, totalFramesAttack: 3, frameSpeed: 25 },
+  giant:     { cost: 5, speed: 10, hp: 4232, damage: 100, width: 40, height: 40, color: "purple", attackCooldown: 2.0, perceptionRadius: 150, attackRange: 20, image: { srcRun: "img/sprites/rieseBlueRun.png", srcAttack: "img/sprites/rieseBlue.png" }, totalFramesRun: 2, totalFramesAttack: 3, frameSpeed: 25 },
+  knight:    { cost: 4, speed: 20, hp: 1703, damage: 140, width: 30, height: 30, color: "yellow", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 20, image: { srcRun: "img/sprites/ritterBlueRun.png", srcAttack: "img/sprites/ritterBlue.png" }, totalFramesRun: 2, totalFramesAttack: 3, frameSpeed: 25 },
+  skeleton:  { cost: 1, speed: 30, hp: 100, damage: 100, width: 20, height: 20, color: "gray", attackCooldown: 0.8, perceptionRadius: 100, attackRange: 30, image: { srcRun: "img/sprites/skelletBlueRun.png", srcAttack: "img/sprites/skelletBlue.png" }, totalFramesRun: 2, totalFramesAttack: 3, frameSpeed: 25 },
+  wizard:    { cost: 6, speed: 40, hp: 500, damage: 200, width: 30, height: 30, color: "magenta", attackCooldown: 1.5, perceptionRadius: 150, attackRange: 50, image: { srcRun: "img/sprites/skelletBlueRun.png", srcAttack: "img/sprites/skelletBlue.png" }, totalFramesRun: 2, totalFramesAttack: 3, frameSpeed: 25 },
+  minion:    { cost: 3, speed: 40, hp: 120, damage: 100, width: 25, height: 25, color: "pink", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 40, image: { srcRun: "img/sprites/barbarBlueRun.png", srcAttack: "img/sprites/barbarBlue.png" }, totalFramesRun: 2, totalFramesAttack: 3, frameSpeed: 25 },
+  goblin:    { cost: 2, speed: 40, hp: 200, damage: 100, width: 25, height: 25, color: "darkgreen", attackCooldown: 0.8, perceptionRadius: 150, attackRange: 30, image: { srcRun: "img/sprites/barbarBlueRun.png", srcAttack: "img/sprites/barbarBlue.png" }, totalFramesRun: 2, totalFramesAttack: 3, frameSpeed: 25 }
 };
+
 
 // Festes Deck (8 eindeutige Karten, einmal am Spielstart definiert)
 const fixedDeck = [];
@@ -113,8 +114,10 @@ function createUnit(owner, type, x, y) {
     attackRange: data.attackRange,
     flashTimer: 0,
     currentTarget: null,
-    imageSrc: data.image.src, 
-    totalFrames: data.totalFrames,
+    imageSrcRun: data.image.srcRun,
+    imageSrcAttack: data.image.srcAttack, 
+    totalFramesRun: data.totalFramesRun,
+    totalFramesAttack: data.totalFramesAttack,
     frameSpeed: data.frameSpeed,
     frameCounter: 0
   };
@@ -575,7 +578,7 @@ function draw() {
   // Einheit mit Animation (Spritesheet) zeichnen
   function drawUnit(unit) {
     if (!unit.image) {
-      unit.image = preloadImage(unit.imageSrc);
+      unit.image = preloadImage(unit.imageSrcRun);
     }
 
     // Animation: Frame berechnen
