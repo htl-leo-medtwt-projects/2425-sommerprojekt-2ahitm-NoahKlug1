@@ -554,7 +554,12 @@ function draw() {
     if (tower.hp <= 0) return;
 
     if (!tower.image) {
-      tower.image = preloadImage("img/sprites/towerRed.png");
+      if(tower.owner == "enemy"){
+        tower.image = preloadImage("img/sprites/towerRed.png");
+      }
+      else{
+        tower.image = preloadImage("img/sprites/towerBlue.png")
+      }
     }
 
     ctx.drawImage(tower.image, tower.x, tower.y, tower.width, tower.height);
