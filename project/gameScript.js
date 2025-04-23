@@ -24,14 +24,14 @@ function createTower(owner, type, x, y, width, height, hp, damage, range) {
   return { owner, type, x, y, width, height, hp, maxHp: hp, damage, range, attackCooldown: 1.0, attackTimer: 0 };
 }
 const playerTowers = [
-  createTower("player", "small", 150, 50, 50, 60, 2000, 100, 200),
-  createTower("player", "big", 50, canvas.height / 2 - 40, 60, 70, 3000, 200, 300),
-  createTower("player", "small", 150, canvas.height - 100, 50, 60, 2000, 100, 200)
+  createTower("player", "small", 150, 50, 50, 60, 1500, 10, 200),
+  createTower("player", "big", 50, canvas.height / 2 - 40, 60, 70, 2000, 20, 300),
+  createTower("player", "small", 150, canvas.height - 100, 50, 60, 1500, 10, 200)
 ];
 const enemyTowers = [
-  createTower("enemy", "small", canvas.width - 150 - 30, 50, 50, 60, 2000, 100, 200),
-  createTower("enemy", "big", canvas.width - 50 - 40, canvas.height / 2 - 40, 60, 70, 3000, 200, 300),
-  createTower("enemy", "small", canvas.width - 150 - 30, canvas.height - 100, 50, 60, 2000, 100, 200)
+  createTower("enemy", "small", canvas.width - 150 - 30, 50, 50, 60, 1500, 10, 200),
+  createTower("enemy", "big", canvas.width - 50 - 40, canvas.height / 2 - 40, 60, 70, 2000, 20, 300),
+  createTower("enemy", "small", canvas.width - 150 - 30, canvas.height - 100, 50, 60, 1500, 10, 200)
 ];
 
 // ---------------------------
@@ -117,7 +117,8 @@ function createUnit(owner, type, x, y) {
     imageSrc2: "img/sprites/archerBlue.png", 
     totalFrames: data.totalFrames,
     frameSpeed: data.frameSpeed,
-    frameCounter: 0
+    frameCounter: 0,
+    isAttacking: false
   };
 }
 // ---------------------------
@@ -213,7 +214,7 @@ function isBlocked(unit, units, nextX, nextY) {
           nextX + unit.width > other.x &&
           nextY < other.y + other.height &&
           nextY + unit.height > other.y) {
-        return true;
+        return false;
       }
     }
   }
@@ -318,8 +319,8 @@ function moveUnit(unit, deltaTime) {
 // Verhindert, dass eine Einheit durch einen lebenden Turm läuft – verschiebt sie sanft.
 function avoidTowerCollision(unit, x, y) {
   let newX = x, newY = y;
-  const towers = unit.owner === "player" ? playerTowers : enemyTowers;
-  towers.forEach(tower => {
+  const allTowers = [...playerTowers, ...enemyTowers]; // beide Seiten
+  allTowers.forEach(tower => {
     if (tower.hp > 0) {
       if (newX < tower.x + tower.width &&
           newX + unit.width > tower.x &&
@@ -340,6 +341,7 @@ function avoidTowerCollision(unit, x, y) {
   });
   return { x: newX, y: newY };
 }
+
 function updateFlashTimers(units, deltaTime) {
   units.forEach(unit => {
     if (unit.flashTimer > 0) {
@@ -383,13 +385,16 @@ function updateUnits(deltaTime) {
 
     // Angreifen, wenn das Ziel im Angriffsradius ist und der Angriff bereit ist
     if (minDist <= unit.attackRange && unit.attackTimer >= unit.attackCooldown) {
+      unit.isAttacking = true; 
       target.hp -= unit.damage;  // Leben des Ziels verringern
       unit.attackTimer = 0;  // Angriffstimer zurücksetzen
       // Wenn das Ziel noch lebt und es eine feindliche Einheit ist, das Ziel blinken lassen
       if (target.hp > 0 && target.type !== undefined) {
         target.flashTimer = 0.2; // Flash-Effekt aktivieren
       }
-    } else {
+    } 
+    if (target.hp <= 0 || minDist > unit.attackRange){
+      unit.isAttacking = false; 
       moveUnit(unit, deltaTime);  // Einheit weiterbewegen, wenn sie nicht angreifen kann
     }
   });
