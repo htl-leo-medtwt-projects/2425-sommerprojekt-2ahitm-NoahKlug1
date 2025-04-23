@@ -41,14 +41,14 @@ let cardPool = [
   "skeleton", "wizard", "minion", "goblin"
 ];
 const unitTypes = {
-  swordsman: { cost: 3, speed: 20, hp: 600, damage: 150, width: 30, height: 30, color: "cyan", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 20, image: {src: "img/sprites/barbarBlueRun.png"}, totalFrames: 2, frameSpeed: 25},
-  archer:    { cost: 3, speed: 20, hp: 250, damage: 120, width: 30, height: 30, color: "green", attackCooldown: 1.2, perceptionRadius: 150, attackRange: 80, image: {src: "img/sprites/archerBlueRun.png"}, totalFrames: 2, frameSpeed: 25},
-  giant:     { cost: 5, speed: 10, hp: 4232, damage: 100, width: 40, height: 40, color: "purple", attackCooldown: 2.0, perceptionRadius: 150, attackRange: 20, image: {src: "img/sprites/rieseRedRun.png"}, totalFrames: 2, frameSpeed: 25 },
-  knight:    { cost: 4, speed: 20, hp: 1703, damage: 140, width: 30, height: 30, color: "yellow", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 20, image: {src: "img/sprites/ritterBlueRun.png"}, totalFrames: 2, frameSpeed: 25 },
-  skeleton:  { cost: 1, speed: 30, hp: 100, damage: 100, width: 20, height: 20, color: "gray", attackCooldown: 0.8, perceptionRadius: 100, attackRange: 30, image: {src: "img/sprites/skelletBlueRun.png"}, totalFrames: 2, frameSpeed: 25 },
-  wizard:    { cost: 6, speed: 40, hp: 500, damage: 200, width: 30, height: 30, color: "magenta", attackCooldown: 1.5, perceptionRadius: 150, attackRange: 50, image: {src: "img/sprites/skelletBlueRun.png"}, totalFrames: 2, frameSpeed: 25 },
-  minion:    { cost: 3, speed: 40, hp: 120, damage: 100, width: 25, height: 25, color: "pink", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 40, image: {src: "img/sprites/barbarBlueRun.png"}, totalFrames: 2, frameSpeed: 25 },
-  goblin:    { cost: 2, speed: 40, hp: 200, damage: 100, width: 25, height: 25, color: "darkgreen", attackCooldown: 0.8, perceptionRadius: 150, attackRange: 30, image: {src: "img/sprites/barbarBlueRun.png"}, totalFrames: 2, frameSpeed: 25}
+  swordsman: { cost: 3, speed: 20, hp: 600, damage: 150, width: 30, height: 30, color: "cyan", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 20, image: {srcRunPlayer: "img/sprites/barbarBlueRun.png"}, totalFrames: 2, frameSpeed: 25},
+  archer:    { cost: 3, speed: 20, hp: 250, damage: 120, width: 30, height: 30, color: "green", attackCooldown: 1.2, perceptionRadius: 150, attackRange: 80, image: {srcRunPlayer: "img/sprites/archerBlueRun.png"}, totalFrames: 2, frameSpeed: 25},
+  giant:     { cost: 5, speed: 10, hp: 4232, damage: 100, width: 40, height: 40, color: "purple", attackCooldown: 2.0, perceptionRadius: 150, attackRange: 20, image: {srcRunPlayer: "img/sprites/rieseBlueRun.png"}, totalFrames: 2, frameSpeed: 25 },
+  knight:    { cost: 4, speed: 20, hp: 1703, damage: 140, width: 30, height: 30, color: "yellow", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 20, image: {srcRunPlayer: "img/sprites/ritterBlueRun.png"}, totalFrames: 2, frameSpeed: 25 },
+  skeleton:  { cost: 1, speed: 30, hp: 100, damage: 100, width: 20, height: 20, color: "gray", attackCooldown: 0.8, perceptionRadius: 100, attackRange: 30, image: {srcRunPlayer: "img/sprites/skelletBlueRun.png"}, totalFrames: 2, frameSpeed: 25 },
+  wizard:    { cost: 6, speed: 40, hp: 500, damage: 200, width: 30, height: 30, color: "magenta", attackCooldown: 1.5, perceptionRadius: 150, attackRange: 50, image: {srcRunPlayer: "img/sprites/magierBlueRun.png"}, totalFrames: 2, frameSpeed: 25 },
+  minion:    { cost: 3, speed: 40, hp: 120, damage: 100, width: 25, height: 25, color: "pink", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 40, image: {srcRunPlayer: "img/sprites/barbarBlueRun.png"}, totalFrames: 2, frameSpeed: 25 },
+  goblin:    { cost: 2, speed: 40, hp: 200, damage: 100, width: 25, height: 25, color: "darkgreen", attackCooldown: 0.8, perceptionRadius: 150, attackRange: 30, image: {srcRunPlayer: "img/sprites/barbarBlueRun.png"}, totalFrames: 2, frameSpeed: 25}
 };
 
 // Festes Deck (8 eindeutige Karten, einmal am Spielstart definiert)
@@ -113,34 +113,21 @@ function createUnit(owner, type, x, y) {
     attackRange: data.attackRange,
     flashTimer: 0,
     currentTarget: null,
-    imageSrc: data.image.src, 
+    imageSrc: data.image.srcRunPlayer,
+    imageSrc2: "img/sprites/archerBlue.png", 
     totalFrames: data.totalFrames,
     frameSpeed: data.frameSpeed,
     frameCounter: 0
   };
 }
 // ---------------------------
-// DEPLOYMENT: Spieler klickt auf Canvas (linke Seite, außer bei Blitz – dann überall)
 canvas.addEventListener("click", (event) => {
   const rect = canvas.getBoundingClientRect();
   const clickX = event.clientX - rect.left;
   const clickY = event.clientY - rect.top;
   if (selectedCard === null) return;
-  // Bei normalen Karten: nur linke Seite erlaubt
   if (playerHand[selectedCard] !== "blitz" && clickX > canvas.width / 2) return;
   const cardKey = playerHand[selectedCard];
-  if (cardKey === "blitz") {
-    castBlitz(clickX, clickY);
-    playerHand.splice(selectedCard, 1);
-    while (playerHand.length < 4) {
-      let candidate = fixedDeck[Math.floor(Math.random() * fixedDeck.length)];
-      if (!playerHand.includes(candidate)) playerHand.push(candidate);
-    }
-    selectedCard = null;
-    updateCardHandUI();
-    spellIndicator.style.display = "none";
-    return;
-  }
   const cost = unitTypes[cardKey].cost;
   if (playerElixir < cost) return;
   playerElixir -= cost;
@@ -163,7 +150,6 @@ canvas.addEventListener("click", (event) => {
 });
 
 // ---------------------------
-// BOT: Bot-Elixir & Bot-Karten spielen
 let enemyCardTimer = 0;
 const enemyCardInterval = 3;
 function botPlayCard() {
@@ -575,7 +561,12 @@ function draw() {
   // Einheit mit Animation (Spritesheet) zeichnen
   function drawUnit(unit) {
     if (!unit.image) {
-      unit.image = preloadImage(unit.imageSrc);
+      if(unit.owner == "enemy"){
+        let imageSrc = unit.imageSrc;
+        unit.image = preloadImage(imageSrc.replace("Blue", "Red"))
+      }else{
+        unit.image = preloadImage(unit.imageSrc);
+      }
     }
 
     // Animation: Frame berechnen
