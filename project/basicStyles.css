@@ -6,6 +6,10 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
+    width: 100%;
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
     background-image: url(img/designImg/startSiteBg.jpg);
     background-size: cover;
     color: white;
@@ -15,7 +19,7 @@ body {
     width: 100%;
     height: 100%;
     text-align: center;
-    padding: 2vh;
+    padding: 0px;
 }
 /* Header: Klickbar, führt immer zur Startseite */
 .header {
@@ -44,7 +48,7 @@ body {
     font-size: 200%;
     font-weight: bolder;
     height: 10vh;
-    padding: 1vh;
+    padding: 0;
     margin: 0 -50px;
     background: #444;
     border: none;
@@ -56,6 +60,8 @@ body {
 .nav button:hover {
     background: #666;
 }
+
+/* content */
 .content {
     display: none;
 }
@@ -106,4 +112,14 @@ body {
 }
 .box h3 {
     margin-bottom: 5px;
+}
+
+#deck{
+    margin-top: -13vh;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 110%;
+    background-image: url(img/designImg/deckBg.jpg);
+    background-size: cover;
 }
