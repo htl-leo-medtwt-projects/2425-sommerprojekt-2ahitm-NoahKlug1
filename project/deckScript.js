@@ -8,7 +8,7 @@ let deckAddedBoxes = new Set();
 
 function initDeckBoxes() {
   deckBoxContainer.innerHTML = "";
-  for (let i = 1; i <= 15; i++) {
+  for (let i = 1; i <= 16; i++) {
     const box = createDeckBox(i);
     deckBoxContainer.appendChild(box);
   }

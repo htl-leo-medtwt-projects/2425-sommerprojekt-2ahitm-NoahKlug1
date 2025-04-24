@@ -23,6 +23,7 @@ body {
 }
 /* Header: Klickbar, führt immer zur Startseite */
 .header {
+    margin-top: 2vh;
     cursor: pointer;
     font-size: 400%;
     font-weight: bold;
@@ -70,16 +71,6 @@ body {
     flex-direction: column;
     align-items: center;
 }
-.start-wrapper {
-    padding: 3vh;
-    width: 100vw;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 2vh;
-}
 .description {
     width: 25%;
     padding: 2.5%;
@@ -114,12 +105,23 @@ body {
     margin-bottom: 5px;
 }
 
-#deck{
-    margin-top: -13vh;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 110%;
-    background-image: url(img/designImg/deckBg.jpg);
+#deckDescription{
+    background-image: url(img/designImg/cardAndMoney.png);
+    background-position: center;
     background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#boniDescription{
+    background-image: url(img/designImg/beerAndBag.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#gameDescription{
+    background-image: url(img/designImg/swordAndHelmet.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
