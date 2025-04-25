@@ -6,6 +6,12 @@ const deckResetBtn = document.getElementById("deckResetBtn");
 let deckSelectedBox = null;
 let deckAddedBoxes = new Set();
 
+const imgUrls = [
+  "img/sprites/archerBlue.png",
+
+]
+
+
 function initDeckBoxes() {
   deckBoxContainer.innerHTML = "";
   for (let i = 1; i <= 16; i++) {
@@ -13,19 +19,29 @@ function initDeckBoxes() {
     deckBoxContainer.appendChild(box);
   }
 }
-
 function createDeckBox(number) {
   const container = document.createElement("div");
   container.className = "deckCardContainer";
   container.setAttribute("data-box", `Box ${number}`);
 
+  // Inhalt der Karte als HTML (statt textContent)
   const card = document.createElement("div");
   card.className = "deckCard";
-  card.textContent = `Box ${number}`;
 
+  card.innerHTML = `
+  <div class="deckCardContent">
+    <img src="img/sprites/archerBlue.png" alt="Box ${number}" class="deckCardImage">
+    <div class="deckCardOverlay">
+      <h3>Box ${number}</h3>
+    </div>
+  </div>
+`;
+
+  // Button-Container erstellen
   const buttons = document.createElement("div");
   buttons.className = "deckButtonsContainer";
 
+  // Hinzufügen-Button
   const addBtn = document.createElement("button");
   addBtn.className = "deckButton deckAddButton";
   addBtn.textContent = "Hinzufügen";
@@ -34,6 +50,7 @@ function createDeckBox(number) {
     handleDeckAddBox(`Box ${number}`, container);
   };
 
+  // Info-Button
   const infoBtn = document.createElement("button");
   infoBtn.className = "deckButton deckInfoButton";
   infoBtn.textContent = "Info";
@@ -42,14 +59,17 @@ function createDeckBox(number) {
     showDeckInfo(`Box ${number}`, `Infos zu Box ${number}`);
   };
 
+  // Buttons zum Container hinzufügen
   buttons.appendChild(addBtn);
   buttons.appendChild(infoBtn);
 
+  // Card und Buttons in den Hauptcontainer packen
   container.appendChild(card);
   container.appendChild(buttons);
 
   return container;
 }
+
 
 function handleDeckAddBox(boxLabel, boxElement) {
   if (deckAddedBoxes.has(boxLabel)) return;
@@ -60,7 +80,12 @@ function handleDeckAddBox(boxLabel, boxElement) {
   if (total < 8) {
     const newCard = document.createElement("div");
     newCard.className = "deckTargetCard";
-    newCard.textContent = boxLabel;
+    newCard.innerHTML = `
+      <div class="deckTargetCardContent">
+        <img src="${imgUrls[0/*numberFromLabel(boxLabel)*/]}" alt="${boxLabel}" class="deckTargetImage">
+        <div class="deckTargetOverlay">${boxLabel}</div>
+      </div>
+    `;
     newCard.onclick = () => handleDeckReplaceBox(newCard);
 
     const removeBtn = document.createElement("button");
@@ -95,8 +120,27 @@ function handleDeckAddBox(boxLabel, boxElement) {
 
 function handleDeckReplaceBox(existingCard) {
   if (deckSelectedBox && !deckAddedBoxes.has(deckSelectedBox)) {
-    const oldLabel = existingCard.childNodes[0].nodeValue.trim();
-    existingCard.childNodes[0].nodeValue = deckSelectedBox;
+    const oldLabel = existingCard.querySelector(".deckTargetOverlay").textContent.trim();
+
+    // Erstelle neuen HTML-Inhalt mit Bild
+    existingCard.innerHTML = `
+      <div class="deckTargetCardContent">
+        <img src="${imgUrls[/*numberFromLabel(deckSelectedBox)*/0]}" alt="${deckSelectedBox}" class="deckTargetImage">
+        <div class="deckTargetOverlay">${deckSelectedBox}</div>
+      </div>
+    `;
+
+    // Setze onclick und remove button erneut
+    existingCard.onclick = () => handleDeckReplaceBox(existingCard);
+
+    const removeBtn = document.createElement("button");
+    removeBtn.className = "deckButton deckRemoveButton deckRemoveSmall";
+    removeBtn.textContent = "✖";
+    removeBtn.onclick = (e) => {
+      e.stopPropagation();
+      handleDeckRemoveBox(existingCard, deckSelectedBox);
+    };
+    existingCard.appendChild(removeBtn);
 
     deckAddedBoxes.delete(oldLabel);
     deckAddedBoxes.add(deckSelectedBox);
@@ -123,7 +167,7 @@ function handleDeckRemoveBox(card, label) {
 
 function showDeckInfo(title, content) {
   document.getElementById("deckInfoTitle").textContent = title;
-  document.getElementById("deckInfoContent").textContent = content;
+  document.getElementById("deckInfoContent").innerHTML = content;
   document.getElementById("deckInfoModal").style.display = "block";
 }
 
@@ -140,3 +184,7 @@ deckResetBtn.onclick = () => {
 };
 
 initDeckBoxes();
+
+function numberFromLabel(label) {
+  return parseInt(label.replace("Box ", ""));
+}
