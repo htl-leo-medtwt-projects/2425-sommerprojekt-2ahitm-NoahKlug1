@@ -6,10 +6,17 @@ const deckResetBtn = document.getElementById("deckResetBtn");
 let deckSelectedBox = null;
 let deckAddedBoxes = new Set();
 
-const imgUrls = [
-  "img/sprites/archerBlue.png",
+const unitTypesArray = [
+  { type: "swordsman", cost: 3, speed: 20, hp: 600, damage: 150, width: 30, height: 30, color: "cyan", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 20, imageRun: "img/sprites/barbarBlue.png", totalFrames: 2, frameSpeed: 25 },
+  { type: "archer",    cost: 3, speed: 20, hp: 250, damage: 120, width: 30, height: 30, color: "green", attackCooldown: 1.2, perceptionRadius: 150, attackRange: 80, imageRun: "img/sprites/archerBlue.png", totalFrames: 2, frameSpeed: 25 },
+  { type: "giant",     cost: 5, speed: 10, hp: 4232, damage: 100, width: 40, height: 40, color: "purple", attackCooldown: 2.0, perceptionRadius: 150, attackRange: 20, imageRun: "img/sprites/rieseBlue.png", totalFrames: 2, frameSpeed: 25 },
+  { type: "knight",    cost: 4, speed: 20, hp: 1703, damage: 140, width: 30, height: 30, color: "yellow", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 20, imageRun: "img/sprites/ritterBlue.png", totalFrames: 2, frameSpeed: 25 },
+  { type: "skeleton",  cost: 1, speed: 30, hp: 100, damage: 100, width: 20, height: 20, color: "gray", attackCooldown: 0.8, perceptionRadius: 100, attackRange: 30, imageRun: "img/sprites/skelletBlue.png", totalFrames: 2, frameSpeed: 25 },
+  { type: "wizard",    cost: 6, speed: 40, hp: 500, damage: 200, width: 30, height: 30, color: "magenta", attackCooldown: 1.5, perceptionRadius: 150, attackRange: 50, imageRun: "img/sprites/magierBlue.png", totalFrames: 2, frameSpeed: 25 },
+  { type: "minion",    cost: 3, speed: 40, hp: 120, damage: 100, width: 25, height: 25, color: "pink", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 40, imageRun: "img/sprites/barbarBlue.png", totalFrames: 2, frameSpeed: 25 },
+  { type: "goblin",    cost: 2, speed: 40, hp: 200, damage: 100, width: 25, height: 25, color: "darkgreen", attackCooldown: 0.8, perceptionRadius: 150, attackRange: 30, imageRun: "img/sprites/barbarBlue.png", totalFrames: 2, frameSpeed: 25 }
+];
 
-]
 
 
 function initDeckBoxes() {
