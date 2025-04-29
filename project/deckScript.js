@@ -7,21 +7,26 @@ let deckSelectedBox = null;
 let deckAddedBoxes = new Set();
 
 const unitTypesArray = [
-  { type: "swordsman", cost: 3, speed: 20, hp: 600, damage: 150, width: 30, height: 30, color: "cyan", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 20, imageRun: "img/sprites/barbarBlue.png", totalFrames: 2, frameSpeed: 25 },
-  { type: "archer",    cost: 3, speed: 20, hp: 250, damage: 120, width: 30, height: 30, color: "green", attackCooldown: 1.2, perceptionRadius: 150, attackRange: 80, imageRun: "img/sprites/archerBlue.png", totalFrames: 2, frameSpeed: 25 },
-  { type: "giant",     cost: 5, speed: 10, hp: 4232, damage: 100, width: 40, height: 40, color: "purple", attackCooldown: 2.0, perceptionRadius: 150, attackRange: 20, imageRun: "img/sprites/rieseBlue.png", totalFrames: 2, frameSpeed: 25 },
-  { type: "knight",    cost: 4, speed: 20, hp: 1703, damage: 140, width: 30, height: 30, color: "yellow", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 20, imageRun: "img/sprites/ritterBlue.png", totalFrames: 2, frameSpeed: 25 },
-  { type: "skeleton",  cost: 1, speed: 30, hp: 100, damage: 100, width: 20, height: 20, color: "gray", attackCooldown: 0.8, perceptionRadius: 100, attackRange: 30, imageRun: "img/sprites/skelletBlue.png", totalFrames: 2, frameSpeed: 25 },
-  { type: "wizard",    cost: 6, speed: 40, hp: 500, damage: 200, width: 30, height: 30, color: "magenta", attackCooldown: 1.5, perceptionRadius: 150, attackRange: 50, imageRun: "img/sprites/magierBlue.png", totalFrames: 2, frameSpeed: 25 },
-  { type: "minion",    cost: 3, speed: 40, hp: 120, damage: 100, width: 25, height: 25, color: "pink", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 40, imageRun: "img/sprites/barbarBlue.png", totalFrames: 2, frameSpeed: 25 },
-  { type: "goblin",    cost: 2, speed: 40, hp: 200, damage: 100, width: 25, height: 25, color: "darkgreen", attackCooldown: 0.8, perceptionRadius: 150, attackRange: 30, imageRun: "img/sprites/barbarBlue.png", totalFrames: 2, frameSpeed: 25 }
+  { type: "swordsman", cost: 3, speed: 20, hp: 600, damage: 150, width: 30, height: 30, color: "cyan", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 20, imageRun: "img/sprites/barbarBlue.png", image: "img/sprites/barbarBlue.png", totalFrames: 2, frameSpeed: 25 },
+  { type: "archer", cost: 3, speed: 20, hp: 250, damage: 120, width: 30, height: 30, color: "green", attackCooldown: 1.2, perceptionRadius: 150, attackRange: 80, imageRun: "img/sprites/archerBlue.png", totalFrames: 2, frameSpeed: 25 },
+  { type: "giant", cost: 5, speed: 10, hp: 4232, damage: 100, width: 40, height: 40, color: "purple", attackCooldown: 2.0, perceptionRadius: 150, attackRange: 20, imageRun: "img/sprites/rieseBlue.png", totalFrames: 2, frameSpeed: 25 },
+  { type: "knight", cost: 4, speed: 20, hp: 1703, damage: 140, width: 30, height: 30, color: "yellow", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 20, imageRun: "img/sprites/ritterBlue.png", totalFrames: 2, frameSpeed: 25 },
+  { type: "skeleton", cost: 1, speed: 30, hp: 100, damage: 100, width: 20, height: 20, color: "gray", attackCooldown: 0.8, perceptionRadius: 100, attackRange: 30, imageRun: "img/sprites/skelletBlue.png", totalFrames: 2, frameSpeed: 25 },
+  { type: "wizard", cost: 6, speed: 40, hp: 500, damage: 200, width: 30, height: 30, color: "magenta", attackCooldown: 1.5, perceptionRadius: 150, attackRange: 50, imageRun: "img/sprites/magierBlue.png", totalFrames: 2, frameSpeed: 25 },
+  { type: "minion", cost: 3, speed: 40, hp: 120, damage: 100, width: 25, height: 25, color: "pink", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 40, imageRun: "img/sprites/barbarBlue.png", totalFrames: 2, frameSpeed: 25 },
+  { type: "goblin", cost: 2, speed: 40, hp: 200, damage: 100, width: 25, height: 25, color: "darkgreen", attackCooldown: 0.8, perceptionRadius: 150, attackRange: 30, imageRun: "img/sprites/barbarBlue.png", totalFrames: 2, frameSpeed: 25 },
+  { type: "assassin", cost: 4, speed: 50, hp: 200, damage: 300, width: 25, height: 25, color: "black", attackCooldown: 0.6, perceptionRadius: 200, attackRange: 30, imageRun: "img/sprites/assassin.png", totalFrames: 2, frameSpeed: 25 },
+  { type: "healer", cost: 3, speed: 25, hp: 300, damage: 0, width: 30, height: 30, color: "lightgreen", attackCooldown: 2.0, perceptionRadius: 150, attackRange: 60, imageRun: "img/sprites/healer.png", totalFrames: 2, frameSpeed: 25 },
+  { type: "tank", cost: 6, speed: 10, hp: 6000, damage: 50, width: 50, height: 50, color: "darkblue", attackCooldown: 2.5, perceptionRadius: 150, attackRange: 20, imageRun: "img/sprites/tank.png", totalFrames: 2, frameSpeed: 25 },
+  { type: "dragon", cost: 10, speed: 35, hp: 2000, damage: 500, width: 60, height: 60, color: "red", attackCooldown: 3.0, perceptionRadius: 200, attackRange: 100, imageRun: "img/sprites/dragon.png", totalFrames: 2, frameSpeed: 25 }
 ];
+
 
 
 
 function initDeckBoxes() {
   deckBoxContainer.innerHTML = "";
-  for (let i = 1; i <= 16; i++) {
+  for (let i = 1; i <= 12; i++) {
     const box = createDeckBox(i);
     deckBoxContainer.appendChild(box);
   }
