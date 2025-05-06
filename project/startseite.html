@@ -39,7 +39,7 @@
                     <h2>Deck-Management</h2>
                     <p>Gestalte dein Deck, verbessere deine Einheiten und passe deine Strategie an.</p>
                     <div class="box" onclick="showPage('deck')">
-                        <h3>Deck-Management</h3>
+                        <h3>Deck</h3>
                     </div>
                 </div>
             </div> 
@@ -86,11 +86,11 @@
                 </div>
             </div>
             <!-- Vertikale Navigation: Linker Button und rechter Button -->
-            <div class="nav left">
-                <button onclick="showPage('rewards')">Belohnungen</button>
+            <div onclick="showPage('rewards')" class="nav left">
+                <h3 >Belohnungen</h3>
             </div>
-            <div class="nav right">
-                <button onclick="showPage('deck')">Deck</button>
+            <div onclick="showPage('deck')" class="nav right">
+                <h3 >Deck</h3>
             </div>
         </div>
 
@@ -98,11 +98,11 @@
         <div id="rewards" class="content">
             <div class="header" onclick="showPage('start')">Belohnungen</div>
             <!-- Vertikale Navigation: Linker Button und rechter Button -->
-            <div class="nav left">
-                <button onclick="showPage('game'),startGame()">Spiel</button>
+            <div onclick="showPage('game'),startGame()" class="nav left">
+                <h3>Spiel</h3>
             </div>
-            <div class="nav right">
-                <button onclick="showPage('deck')">Deck</button>
+            <div onclick="showPage('deck')" class="nav right">
+                <h3 >Deck</h3>
             </div>
         </div>
 
@@ -129,11 +129,11 @@
                 </div>
             </div>
             <!-- Vertikale Navigation: Linker Button und rechter Button -->
-            <div class="nav left">
-                <button onclick="showPage('game'), startGame()">Spiel</button>
+            <div onclick="showPage('game'), startGame()" class="nav left">
+                <h3>Spiel</h3>
             </div>
-            <div class="nav right">
-                <button onclick="showPage('rewards')">Belohnungen</button>
+            <div onclick="showPage('rewards')" class="nav right">
+                <h3 >Belohnungen</h3>
             </div>
         </div>
     </div>

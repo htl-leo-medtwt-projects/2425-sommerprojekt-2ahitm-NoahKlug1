@@ -26,7 +26,7 @@ const unitTypesArray = [
 
 function initDeckBoxes() {
   deckBoxContainer.innerHTML = "";
-  for (let i = 0; i <= 12; i++) {
+  for (let i = 0; i < 12; i++) {
     const box = createDeckBox(i);
     deckBoxContainer.appendChild(box);
   }
@@ -39,7 +39,7 @@ function createDeckBox(number) {
   // Inhalt der Karte als HTML (statt textContent)
   const card = document.createElement("div");
   card.className = "deckCard";
-
+  console.log(number);
   card.innerHTML = `
   <div class="deckCardContent">
     <img src="${unitTypesArray[number].image}" alt="Box${number}" class="deckCardImage">

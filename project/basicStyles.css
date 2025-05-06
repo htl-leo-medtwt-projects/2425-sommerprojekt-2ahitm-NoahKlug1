@@ -10,7 +10,7 @@ body {
     margin: 0;
     overflow-x: hidden;
     overflow-y: scroll;
-    background-image: url(img/designImg/startSiteBg.jpg);
+    background-image: url(img/designImg/betterBgImg.png);
     background-size: cover;
     color: white;
     position: relative;
@@ -32,10 +32,22 @@ body {
 /* Navigation: Vertikale Buttons an linken und rechten Seiten */
 .nav {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 -65px;
     position: absolute;
     top: 50%;
+    cursor: pointer;
+    background-image: url(img/designImg/buttonImg.png);
+    background-position: center;
+    background-size: 120% 110%;
+    background-repeat: no-repeat;
+    height: 10vh;
+    width: 30vh;
     transform: translateY(-50%);
+}
+.nav:hover{
+    transform: scale(1.1);
 }
 .nav.left {
     left: 1px;
@@ -44,22 +56,6 @@ body {
 .nav.right {
     transform: rotate(-90deg); 
     right: 1px;
-}
-.nav button {
-    font-size: 200%;
-    font-weight: bolder;
-    height: 10vh;
-    padding: 0;
-    margin: 0 -50px;
-    background: #444;
-    border: none;
-    color: white;
-    cursor: pointer;
-    border-radius: 2vh;
-    width: 30vh;
-}
-.nav button:hover {
-    background: #666;
 }
 
 /* content */
@@ -93,16 +89,21 @@ body {
 .box {
     width: 100%;
     height: 70px;
-    background: #555;
+    background-image: url(img/designImg/buttonImg.png);
+    background-position: center;
+    background-size: 110% 100%;
+    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 2vh;
     cursor: pointer;
-    padding: 0px;
+    transition: all ease .5s;
+}
+.box:hover{
+    transform: scale(1.1);
 }
 .box h3 {
-    margin-bottom: 5px;
+    color: white;
 }
 
 #deckDescription{
@@ -129,8 +130,11 @@ body {
 
 /*swiper styling */
 .swiper-container {
-    width: 100%;
-    height: 100vh; /* Volle Bildschirmhöhe */
+    overflow: hidden;
+    margin: 2vh;
+    border-radius: 2vh;
+    width: 80%;
+    height: 40vh;
   }
   
   .swiper-slide {
@@ -166,16 +170,5 @@ body {
   /* Inhalt des Slides */
   .slide-content {
     padding: 20px;
-    max-width: 80%;
-  }
-
-  /* Anpassen der Pagination-Punkte */
-  .swiper-pagination-bullet {
-    width: 12px;
-    height: 12px;
-    background-color: rgba(255, 255, 255, 0.7);
-  }
-
-  .swiper-pagination-bullet-active {
-    background-color: white;
+    max-width: 100%;
   }
