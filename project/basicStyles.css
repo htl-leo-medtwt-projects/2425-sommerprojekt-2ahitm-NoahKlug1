@@ -125,3 +125,55 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
 }
+/*swiper styling */
+.swiper-container {
+    width: 100%;
+    height: 100vh; /* Volle Bildschirmhöhe */
+  }
+  
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 24px;
+    color: #fff;
+  }
+  
+  /* Unterschiedliche Hintergrundfarben für jeden Slide */
+  .swiper-slide:nth-child(1) {
+    background-color: #4CAF50;
+  }
+  
+  .swiper-slide:nth-child(2) {
+    background-color: #2196F3;
+  }
+  
+  .swiper-slide:nth-child(3) {
+    background-color: #9C27B0;
+  }
+  
+  .swiper-slide:nth-child(4) {
+    background-color: #FF5722;
+  }
+  
+  .swiper-slide:nth-child(5) {
+    background-color: #607D8B;
+  }
+
+  /* Inhalt des Slides */
+  .slide-content {
+    padding: 20px;
+    max-width: 80%;
+  }
+
+  /* Anpassen der Pagination-Punkte */
+  .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: white;
+  }

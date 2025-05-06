@@ -10,13 +10,14 @@
     <script defer src="deckScript.js"></script>
     <script defer src="basicScript.js"></script>
     <script defer src="gameScript.js"></script>
-    <!--swiper-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/10.0.4/swiper-bundle.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/10.0.4/swiper-bundle.min.js"></script>
 </head>
 <body>
     <div class="container">
         <!-- Startseite -->
         <div id="start" class="content active">
-            <div class="header" onclick="showPage('start') ">Skibidi Royle</div>
+            <div class="header" onclick="showPage('start') ">KI Royle</div>
             <!-- Beschreibung der einzelnen Optionen -->
             <!-- Drei klickbare Boxen zur Navigation -->
             <div class="start-container">
@@ -41,8 +42,46 @@
                         <h3>Deck-Management</h3>
                     </div>
                 </div>
-                
-            </div>
+            </div>  
+            <div class="swiper-container">
+                <!-- Swiper Wrapper -->
+                <div class="swiper-wrapper">
+                  <!-- Slides -->
+                  <div class="swiper-slide">
+                    <div class="slide-content">
+                      <h2>Slide 1</h2>
+                      <p>Dies ist der Inhalt für den ersten Slide. Der Text ist horizontal und vertikal zentriert.</p>
+                    </div>
+                  </div>
+                  
+                  <div class="swiper-slide">
+                    <div class="slide-content">
+                      <h2>Slide 2</h2>
+                      <p>Willkommen beim zweiten Slide! Auch hier ist der Text perfekt in der Mitte positioniert.</p>
+                    </div>
+                  </div>
+                  
+                  <div class="swiper-slide">
+                    <div class="slide-content">
+                      <h2>Slide 3</h2>
+                      <p>Der dritte Slide demonstriert weiterhin die korrekte Zentrierung des Textes.</p>
+                    </div>
+                  </div>
+                  
+                  <div class="swiper-slide">
+                    <div class="slide-content">
+                      <h2>Slide 4</h2>
+                      <p>Fast am Ende! Der Text bleibt in jedem Slide perfekt zentriert.</p>
+                    </div>
+                  </div>
+                  
+                  <div class="swiper-slide">
+                    <div class="slide-content">
+                      <h2>Slide 5</h2>
+                      <p>Der letzte Slide in unserer vertikalen Präsentation mit zentriertem Text.</p>
+                    </div>
+                  </div>
+                </div> 
         </div>
 
         <!-- Spielfeldseite -->
@@ -80,6 +119,7 @@
             <!-- Vertikale Navigation: Linker Button und rechter Button -->
             <div class="nav left">
                 <button onclick="showPage('game'),startGame()">Spiel</button>
+                <h2>Es ist alles Ki generiert</h2>
             </div>
             <div class="nav right">
                 <button onclick="showPage('deck')">Deck</button>
@@ -94,6 +134,7 @@
             <div id="deckTargetFrame" class="deckTargetFrame">
                 <div id="deckFrame1" class="deckFrameSection"></div>
                 <div id="deckFrame2" class="deckFrameSection"></div>
+                <h2>Es ist alles Ki generiert</h2>
             </div>
 
 
@@ -111,9 +152,11 @@
             <!-- Vertikale Navigation: Linker Button und rechter Button -->
             <div class="nav left">
                 <button onclick="showPage('game'), startGame()">Spiel</button>
+                <h2>Es ist alles Ki generiert</h2>
             </div>
             <div class="nav right">
                 <button onclick="showPage('rewards')">Belohnungen</button>
+                <h2>Es ist alles Ki generiert</h2>
             </div>
         </div>
     </div>
