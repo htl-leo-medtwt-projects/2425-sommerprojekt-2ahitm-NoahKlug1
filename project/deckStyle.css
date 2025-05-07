@@ -204,8 +204,10 @@
   padding: 0;
   width: 100%;
   height: 120%;
-  background-image: url(img/designImg/deckBg.jpg);
-  background-size: cover;
+  background-image: url(img/designImg/newDeckBg.png);
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .deckCardContent {

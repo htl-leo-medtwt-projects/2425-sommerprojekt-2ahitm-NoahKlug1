@@ -1,6 +1,9 @@
-
+@font-face {
+    font-family: 'pixelFont';
+    src: url(fonts/antiquity-print.ttf);
+}
 body {
-    font-family: Arial, sans-serif;
+    font-family: Arial;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,14 +26,20 @@ body {
 }
 /* Header: Klickbar, führt immer zur Startseite */
 .header {
+    font-family: 'pixelFont';
     margin-top: 2vh;
     cursor: pointer;
     font-size: 400%;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 0;
+}
+h2{
+    font-size: larger;
+    font-family: 'pixelFont';
 }
 /* Navigation: Vertikale Buttons an linken und rechten Seiten */
 .nav {
+    font-family: 'pixelFont';
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,9 +47,9 @@ body {
     position: absolute;
     top: 50%;
     cursor: pointer;
-    background-image: url(img/designImg/buttonImg.png);
+    background-image: url(img/designImg/justSchild.png);
     background-position: center;
-    background-size: 120% 110%;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
     height: 10vh;
     width: 30vh;
@@ -78,6 +87,9 @@ body {
     flex-direction: column;
 }
 .description p {
+    padding: 2vh;
+    border-radius: 2vh;
+    background-color: rgba(28, 26, 26, 0.716);
     margin: 10px 0;
 }
 .start-container {
@@ -87,9 +99,10 @@ body {
     width: 100%;
 }
 .box {
+    font-family: 'pixelFont';
     width: 100%;
     height: 70px;
-    background-image: url(img/designImg/buttonImg.png);
+    background-image: url(img/designImg/justSchild.png);
     background-position: center;
     background-size: 110% 100%;
     background-repeat: no-repeat;
@@ -148,15 +161,24 @@ body {
   
   /* Unterschiedliche Hintergrundfarben für jeden Slide */
   .swiper-slide:nth-child(1) {
-    background-color: #4CAF50;
+    background-image: url(img/designImg/bar.png);
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
   }
   
   .swiper-slide:nth-child(2) {
-    background-color: #2196F3;
+    background-image: url(img/designImg/pokertable.png);
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
   }
   
   .swiper-slide:nth-child(3) {
-    background-color: #9C27B0;
+    background-image: url(img/designImg/workbench.png);
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
   }
   
   .swiper-slide:nth-child(4) {

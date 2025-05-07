@@ -21,9 +21,6 @@ const unitTypesArray = [
   { type: "witch", cost: 10, speed: 35, hp: 2000, damage: 500, width: 60, height: 60, color: "red", attackCooldown: 3.0, perceptionRadius: 200, attackRange: 100, image: "img/sprites/hexeBlue.png", totalFrames: 2, frameSpeed: 25 }
 ];
 
-
-
-
 function initDeckBoxes() {
   deckBoxContainer.innerHTML = "";
   for (let i = 0; i < 12; i++) {
@@ -31,6 +28,7 @@ function initDeckBoxes() {
     deckBoxContainer.appendChild(box);
   }
 }
+
 function createDeckBox(number) {
   const container = document.createElement("div");
   container.className = "deckCardContainer";
@@ -39,7 +37,6 @@ function createDeckBox(number) {
   // Inhalt der Karte als HTML (statt textContent)
   const card = document.createElement("div");
   card.className = "deckCard";
-  console.log(number);
   card.innerHTML = `
   <div class="deckCardContent">
     <img src="${unitTypesArray[number].image}" alt="Box${number}" class="deckCardImage">
@@ -82,48 +79,71 @@ function createDeckBox(number) {
   return container;
 }
 
-
-function handleDeckAddBox(boxLabel, boxElement) {
-  if (deckAddedBoxes.has(boxLabel)) return;
-
-  deckSelectedBox = boxLabel;
-
-  const index = parseInt(boxLabel.replace("Box", ""));
-  const total = deckFrame1.children.length + deckFrame2.children.length;
-
-  if (total < 8) {
-    // Direkt hinzufügen
+// Funktion zur Anzeige des cardPools im Target Frame
+function displayCardPool() {
+  deckFrame1.innerHTML = "";
+  deckFrame2.innerHTML = "";
+  
+  cardPool.forEach((cardType, index) => {
+    // Finde den Index des Kartentyps im unitTypesArray
+    const unitIndex = unitTypesArray.findIndex(unit => unit.type === cardType);
+    if (unitIndex === -1) return;
+    
+    const unit = unitTypesArray[unitIndex];
+    
     const newCard = document.createElement("div");
     newCard.className = "deckTargetCard";
     newCard.innerHTML = `
       <div class="deckTargetCardContent">
-        <img src="${unitTypesArray[index].image}" alt="${boxLabel}" class="deckTargetImage">
-        <div class="deckTargetOverlay"><h4>${unitTypesArray[index].type}</h4></div>
+        <img src="${unit.image}" alt="${cardType}" class="deckTargetImage">
+        <div class="deckTargetOverlay"><h4>${cardType}</h4></div>
       </div>
     `;
-    newCard.onclick = () => handleDeckReplaceBox(newCard);
-
+    
     const removeBtn = document.createElement("button");
     removeBtn.className = "deckButton deckRemoveButton deckRemoveSmall";
     removeBtn.textContent = "✖";
     removeBtn.onclick = (e) => {
       e.stopPropagation();
-      handleDeckRemoveBox(newCard, boxLabel);
+      handleDeckRemoveBox(newCard, `Box${unitIndex}`);
     };
     newCard.appendChild(removeBtn);
-
-    if (deckFrame1.children.length < 4) {
+    
+    // Füge die Karte zum entsprechenden Frame hinzu
+    if (index < 4) {
       deckFrame1.appendChild(newCard);
     } else {
       deckFrame2.appendChild(newCard);
     }
+    
+    // Füge die Box zum Set der hinzugefügten Boxen hinzu
+    deckAddedBoxes.add(`Box${unitIndex}`);
+  });
+  
+  // Entferne die Boxen aus dem Container, die im cardPool sind
+  const boxesToRemove = [];
+  document.querySelectorAll('.deckCardContainer').forEach(box => {
+    const boxLabel = box.getAttribute('data-box');
+    const boxIndex = parseInt(boxLabel.replace('Box', ''));
+    const cardType = unitTypesArray[boxIndex].type;
+    
+    if (cardPool.includes(cardType)) {
+      boxesToRemove.push(box);
+    }
+  });
+  
+  boxesToRemove.forEach(box => box.remove());
+}
 
-    deckAddedBoxes.add(boxLabel);
-    boxElement.remove();
-    deckSelectedBox = null;
-  } else {
-    // Deck ist voll – Auswahl bleibt erhalten für Austausch
-    // Nur Animation – Karte nicht entfernen!
+function handleDeckAddBox(boxLabel, boxElement) {
+  if (deckAddedBoxes.has(boxLabel)) return;
+
+  deckSelectedBox = boxLabel;
+  const index = parseInt(boxLabel.replace("Box", ""));
+  const cardType = unitTypesArray[index].type;
+  
+  if (cardPool.length >= 8) {
+    // Wenn das Deck voll ist, wähle eine Karte zum Ersetzen
     document.getElementById("deckTargetFrame").scrollIntoView({ behavior: "smooth" });
     document.querySelectorAll(".deckTargetCard").forEach(card => {
       card.classList.add("deckWobble");
@@ -133,70 +153,75 @@ function handleDeckAddBox(boxLabel, boxElement) {
         card.classList.remove("deckWobble");
       });
     }, 2000);
+  } else {
+    // Füge die neue Karte zum cardPool hinzu
+    cardPool.push(cardType);
+    deckAddedBoxes.add(boxLabel);
+    boxElement.remove();
+    displayCardPool();
   }
+  
+  deckSelectedBox = null;
 }
 
+function handleDeckReplaceBox(existingCard, newCardType) {
+  if (!deckSelectedBox || !newCardType) return;
+  console.log(newCardType);
 
-function handleDeckReplaceBox(existingCard) {
-  if (deckSelectedBox && !deckAddedBoxes.has(deckSelectedBox)) {
-    const oldLabel = existingCard.querySelector(".deckTargetOverlay").textContent.trim();
-    const index = parseInt(deckSelectedBox.replace("Box", ""));
-    // Erstelle neuen HTML-Inhalt mit Bild
-    existingCard.innerHTML = `
-      <div class="deckTargetCardContent">
-        <img src="${unitTypesArray[index].image}" alt="${boxLabel}" class="deckTargetImage">
-        <div class="deckTargetOverlay">${unitTypesArray[index].type}</div>
-      </div>
-    `;
-
-    // Setze onclick und remove button erneut
-    existingCard.onclick = () => handleDeckReplaceBox(existingCard);
-
-    const removeBtn = document.createElement("button");
-    removeBtn.className = "deckButton deckRemoveButton deckRemoveSmall";
-    removeBtn.textContent = "✖";
-    removeBtn.onclick = (e) => {
-      e.stopPropagation();
-      handleDeckRemoveBox(existingCard, deckSelectedBox);
-    };
-    existingCard.appendChild(removeBtn);
-
-    deckAddedBoxes.delete(oldLabel);
-    deckAddedBoxes.add(deckSelectedBox);
-
-    const number = parseInt(oldLabel.replace("Box ", ""));
-    const oldBox = createDeckBox(number);
-    deckBoxContainer.appendChild(oldBox);
-
-    const newBox = [...document.querySelectorAll('.deckCardContainer')]
-      .find(el => el.getAttribute("data-box") === deckSelectedBox);
-    if (newBox) newBox.remove();
-
-    deckSelectedBox = null;
+  const index = parseInt(deckSelectedBox.replace("Box", ""));
+  const newCardTypeString = unitTypesArray[index].type;
+  
+  // Finde die alte Karte, die ersetzt werden soll
+  const oldCardType = existingCard.querySelector(".deckTargetOverlay h4").textContent;
+  
+  // Ersetze die alte Karte im cardPool
+  const oldCardIndex = cardPool.indexOf(oldCardType);
+  if (oldCardIndex !== -1) {
+    cardPool[oldCardIndex] = newCardTypeString;
   }
+  
+  // Aktualisiere die Anzeige
+  displayCardPool();
+  
+  // Entferne die Box der neuen Karte aus dem Container
+  const newBox = [...document.querySelectorAll('.deckCardContainer')]
+    .find(el => el.getAttribute("data-box") === deckSelectedBox);
+  if (newBox) newBox.remove();
+  
+  deckSelectedBox = null;
 }
 
 function handleDeckRemoveBox(card, label) {
-  card.remove();
+  const cardText = card.querySelector(".deckTargetOverlay h4").textContent;
+  
+  // Entferne die Karte aus dem cardPool
+  const cardIndex = cardPool.indexOf(cardText);
+  if (cardIndex !== -1) {
+    cardPool.splice(cardIndex, 1);
+  }
+  
   deckAddedBoxes.delete(label);
-
-  const index = parseInt(label.replace("Box", ""));
-  const restored = createDeckBox(index);
-
+  
+  // Stelle die Box im Container wieder her
+  const boxIndex = parseInt(label.replace("Box", ""));
+  const restored = createDeckBox(boxIndex);
+  
   // Die Karte an der ursprünglichen Position wieder einfügen
   const allDecks = [...deckBoxContainer.children];
   const insertBefore = allDecks.find(el => {
     const elIndex = parseInt(el.getAttribute("data-box").replace("Box", ""));
-    return elIndex > index;
+    return elIndex > boxIndex;
   });
-
+  
   if (insertBefore) {
     deckBoxContainer.insertBefore(restored, insertBefore);
   } else {
     deckBoxContainer.appendChild(restored);
   }
+  
+  // Aktualisiere die Anzeige
+  displayCardPool();
 }
-
 
 function showDeckInfo(title, content) {
   document.getElementById("deckInfoTitle").textContent = title;
@@ -209,15 +234,18 @@ document.getElementById("deckCloseInfo").onclick = () => {
 };
 
 deckResetBtn.onclick = () => {
-  deckFrame1.innerHTML = "";
-  deckFrame2.innerHTML = "";
+  // Setze cardPool auf den Standardwert zurück
+  cardPool = ["swordsman", "archer", "giant", "knight", "skeleton", "wizard", "gunMan", "witch"];
   deckAddedBoxes.clear();
   deckSelectedBox = null;
+  
+  // Initialisiere alle Boxen neu
   initDeckBoxes();
+  
+  // Zeige die Karten im cardPool an
+  displayCardPool();
 };
 
+// Initialisierung
 initDeckBoxes();
-
-function numberFromLabel(label) {
-  return parseInt(label.replace("Box ", ""));
-}
+displayCardPool(); // Zeige die Standardkarten an
