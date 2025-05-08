@@ -1,3 +1,7 @@
+@font-face {
+  font-family: 'mideavleFont';
+  src: url(fonts/PixelPurl.ttf);
+}
 .deckContainer {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -83,19 +87,25 @@
 }
 
 .deckResetButton {
+  font-family: 'mideavleFont';
+  font-size: 150%;
+  color: white;
   margin: 1vh;
   padding: 10px 20px;
-  background-color: red;
-  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(img/designImg/justSchild.png);
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   border: none;
-  border-radius: 2vh;
-  font-size: 14px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: transform ease 0.2s;
 }
 
 .deckResetButton:hover {
-  background-color: darkred;
+  transform: scale(1.1);
 }
 
 .deckTargetFrame {
@@ -105,7 +115,7 @@
   flex-direction: column;
   gap: 10px;
   border-radius: 2vh;
-  background-color: #fff;
+  background-color: black;
 }
 
 .deckFrameSection {
@@ -175,14 +185,14 @@
   width: 400px;
   max-width: 90%;
   padding: 20px;
-  background-color: white;
+  background-color: #641c11;
   border-radius: 10px;
   transform: translate(-50%, -50%);
   z-index: 10000;
   box-shadow: 0 0 20px rgba(0,0,0,0.3);
 }
 #deckInfoContent{
-  background-color: #dc3545;
+  font-family: 'mideavleFont';
 }
 
 #deckCloseInfo {

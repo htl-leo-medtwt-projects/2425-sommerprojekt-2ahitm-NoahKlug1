@@ -13,12 +13,12 @@ const unitTypesArray = [
   { type: "knight", cost: 4, speed: 20, hp: 1703, damage: 140, width: 30, height: 30, color: "yellow", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 20, image: "img/sprites/ritterBlue.png", totalFrames: 2, frameSpeed: 25 },
   { type: "skeleton", cost: 1, speed: 30, hp: 100, damage: 100, width: 20, height: 20, color: "gray", attackCooldown: 0.8, perceptionRadius: 100, attackRange: 30, image: "img/sprites/skelletBlue.png", totalFrames: 2, frameSpeed: 25 },
   { type: "wizard", cost: 6, speed: 40, hp: 500, damage: 200, width: 30, height: 30, color: "magenta", attackCooldown: 1.5, perceptionRadius: 150, attackRange: 50, image: "img/sprites/magierBlue.png", totalFrames: 2, frameSpeed: 25 },
-  { type: "wizardFire", cost: 3, speed: 40, hp: 120, damage: 100, width: 25, height: 25, color: "pink", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 40, image: "img/sprites/magierFeuerBlue.png", totalFrames: 2, frameSpeed: 25 },
-  { type: "tableTennis", cost: 2, speed: 40, hp: 200, damage: 100, width: 25, height: 25, color: "darkgreen", attackCooldown: 0.8, perceptionRadius: 150, attackRange: 30, image: "img/sprites/tableTennisManBlue.png", totalFrames: 2, frameSpeed: 25 },
-  { type: "gunMan", cost: 4, speed: 50, hp: 200, damage: 300, width: 25, height: 25, color: "black", attackCooldown: 0.6, perceptionRadius: 200, attackRange: 30, image: "img/sprites/gunManBlue.png", totalFrames: 2, frameSpeed: 25 },
-  { type: "viking", cost: 3, speed: 25, hp: 300, damage: 0, width: 30, height: 30, color: "lightgreen", attackCooldown: 2.0, perceptionRadius: 150, attackRange: 60, image: "img/sprites/vikingBlue.png", totalFrames: 2, frameSpeed: 25 },
-  { type: "megaKnight", cost: 6, speed: 10, hp: 6000, damage: 50, width: 50, height: 50, color: "darkblue", attackCooldown: 2.5, perceptionRadius: 150, attackRange: 20, image: "img/sprites/megaRitterBlue.png", totalFrames: 2, frameSpeed: 25 },
-  { type: "witch", cost: 10, speed: 35, hp: 2000, damage: 500, width: 60, height: 60, color: "red", attackCooldown: 3.0, perceptionRadius: 200, attackRange: 100, image: "img/sprites/hexeBlue.png", totalFrames: 2, frameSpeed: 25 }
+  { type: "firewizard", cost: 3, speed: 40, hp: 120, damage: 100, width: 25, height: 25, color: "pink", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 40, image: "img/sprites/magierFeuerBlue.png", totalFrames: 2, frameSpeed: 25 },
+  { type: "tennis", cost: 2, speed: 40, hp: 200, damage: 100, width: 25, height: 25, color: "darkgreen", attackCooldown: 0.8, perceptionRadius: 150, attackRange: 30, image: "img/sprites/tableTennisManBlue.png", totalFrames: 2, frameSpeed: 25 },
+  { type: "gunman", cost: 4, speed: 50, hp: 200, damage: 300, width: 25, height: 25, color: "black", attackCooldown: 0.6, perceptionRadius: 200, attackRange: 30, image: "img/sprites/gunManBlue.png", totalFrames: 2, frameSpeed: 25 },
+  { type: "viking", cost: 3, speed: 25, hp: 300, damage: 200, width: 30, height: 30, color: "lightgreen", attackCooldown: 2.0, perceptionRadius: 150, attackRange: 60, image: "img/sprites/vikingBlue.png", totalFrames: 2, frameSpeed: 25 },
+  { type: "bigknight", cost: 6, speed: 10, hp: 6000, damage: 50, width: 50, height: 50, color: "darkblue", attackCooldown: 2.5, perceptionRadius: 150, attackRange: 20, image: "img/sprites/megaRitterBlue.png", totalFrames: 2, frameSpeed: 25 },
+  { type: "witch", cost: 9, speed: 35, hp: 2000, damage: 500, width: 60, height: 60, color: "red", attackCooldown: 3.0, perceptionRadius: 200, attackRange: 100, image: "img/sprites/hexeBlue.png", totalFrames: 2, frameSpeed: 25 }
 ];
 
 function initDeckBoxes() {
@@ -65,7 +65,7 @@ function createDeckBox(number) {
   infoBtn.textContent = "Info";
   infoBtn.onclick = (e) => {
     e.stopPropagation();
-    showDeckInfo(`Box${number}`, `${unitTypesArray[number].type.toUpperCase()}`);
+    showDeckInfo(`${unitTypesArray[number].type.toUpperCase()}`, `<p>DAMAGE: ${unitTypesArray[number].damage}<br> HEALTH: ${unitTypesArray[number].hp} <br>ELEXIR-COST: ${unitTypesArray[number].cost}`);
   };
 
   // Buttons zum Container hinzufügen
@@ -90,7 +90,6 @@ function displayCardPool() {
     if (unitIndex === -1) return;
     
     const unit = unitTypesArray[unitIndex];
-    
     const newCard = document.createElement("div");
     newCard.className = "deckTargetCard";
     newCard.innerHTML = `
@@ -235,7 +234,7 @@ document.getElementById("deckCloseInfo").onclick = () => {
 
 deckResetBtn.onclick = () => {
   // Setze cardPool auf den Standardwert zurück
-  cardPool = ["swordsman", "archer", "giant", "knight", "skeleton", "wizard", "gunMan", "witch"];
+  cardPool = ["swordsman", "archer", "giant", "knight", "skeleton", "wizard", "gunman", "tennis"];
   deckAddedBoxes.clear();
   deckSelectedBox = null;
   

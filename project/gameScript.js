@@ -24,21 +24,21 @@ function createTower(owner, type, x, y, width, height, hp, damage, range) {
   return { owner, type, x, y, width, height, hp, maxHp: hp, damage, range, attackCooldown: 1.0, attackTimer: 0 };
 }
 const playerTowers = [
-  createTower("player", "small", 150, 50, 50, 60, 1500, 10, 200),
+  createTower("player", "small", 150, 60, 50, 60, 1500, 10, 200),
   createTower("player", "big", 50, canvas.height / 2 - 40, 60, 70, 2000, 20, 300),
-  createTower("player", "small", 150, canvas.height - 100, 50, 60, 1500, 10, 200)
+  createTower("player", "small", 150, canvas.height - 110, 50, 60, 1500, 10, 200)
 ];
 const enemyTowers = [
-  createTower("enemy", "small", canvas.width - 150 - 30, 50, 50, 60, 1500, 10, 200),
+  createTower("enemy", "small", canvas.width - 150 - 30, 60, 50, 60, 1500, 10, 200),
   createTower("enemy", "big", canvas.width - 50 - 40, canvas.height / 2 - 40, 60, 70, 2000, 20, 300),
-  createTower("enemy", "small", canvas.width - 150 - 30, canvas.height - 100, 50, 60, 1500, 10, 200)
+  createTower("enemy", "small", canvas.width - 150 - 30, canvas.height - 110, 50, 60, 1500, 10, 200)
 ];
 
 // ---------------------------
 // TROOP-TYPEN & DECK
 let cardPool = [
   "swordsman", "archer", "giant", "knight",
-  "skeleton", "wizard", "gunMan", "witch"
+  "skeleton", "wizard", "gunman", "tennis"
 ];
 const unitTypes = {
   swordsman:   { cost: 3, speed: 20, hp: 600, damage: 150, width: 30, height: 30, color: "cyan", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 20, image: {srcRunPlayer: "img/sprites/barbarBlueRun.png"}, totalFrames: 2, frameSpeed: 25},
@@ -47,11 +47,11 @@ const unitTypes = {
   knight:      { cost: 4, speed: 20, hp: 1703, damage: 140, width: 30, height: 30, color: "yellow", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 20, image: {srcRunPlayer: "img/sprites/ritterBlueRun.png"}, totalFrames: 2, frameSpeed: 25},
   skeleton:    { cost: 1, speed: 30, hp: 100, damage: 100, width: 20, height: 20, color: "gray", attackCooldown: 0.8, perceptionRadius: 100, attackRange: 30, image: {srcRunPlayer: "img/sprites/skelletBlueRun.png"}, totalFrames: 2, frameSpeed: 25},
   wizard:      { cost: 6, speed: 40, hp: 500, damage: 200, width: 30, height: 30, color: "magenta", attackCooldown: 1.5, perceptionRadius: 150, attackRange: 50, image: {srcRunPlayer: "img/sprites/magierBlueRun.png"}, totalFrames: 2, frameSpeed: 25},
-  wizardFire:  { cost: 3, speed: 40, hp: 120, damage: 100, width: 25, height: 25, color: "pink", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 40, image: {srcRunPlayer: "img/sprites/magierFeuerBlueRun.png"}, totalFrames: 2, frameSpeed: 25},
-  tableTennis: { cost: 2, speed: 40, hp: 200, damage: 100, width: 25, height: 25, color: "darkgreen", attackCooldown: 0.8, perceptionRadius: 150, attackRange: 30, image: {srcRunPlayer: "img/sprites/tableTennisManBlueRun.png"}, totalFrames: 2, frameSpeed: 25 },
-  gunMan:      { cost: 4, speed: 50, hp: 200, damage: 300, width: 25, height: 25, color: "black", attackCooldown: 0.6, perceptionRadius: 200, attackRange: 30, image: {srcRunPlayer: "img/sprites/gunManBlueRun.png"}, totalFrames: 2, frameSpeed: 25},
-  viking:      { cost: 3, speed: 25, hp: 300, damage: 0, width: 30, height: 30, color: "lightgreen", attackCooldown: 2.0, perceptionRadius: 150, attackRange: 60, image: {srcRunPlayer: "img/sprites/vikingBlueRun.png"}, totalFrames: 2, frameSpeed: 25},
-  megaKnight:  { cost: 6, speed: 10, hp: 4000, damage: 50, width: 50, height: 50, color: "darkblue", attackCooldown: 2.5, perceptionRadius: 150, attackRange: 20, image: {srcRunPlayer: "img/sprites/megaRitterBlueRun.png"}, totalFrames: 2, frameSpeed: 25},
+  firewizard:  { cost: 3, speed: 40, hp: 120, damage: 100, width: 25, height: 25, color: "pink", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 40, image: {srcRunPlayer: "img/sprites/magierFeuerBlueRun.png"}, totalFrames: 2, frameSpeed: 25},
+  tennis:      { cost: 2, speed: 40, hp: 200, damage: 100, width: 25, height: 25, color: "darkgreen", attackCooldown: 0.8, perceptionRadius: 150, attackRange: 30, image: {srcRunPlayer: "img/sprites/tableTennisManBlueRun.png"}, totalFrames: 2, frameSpeed: 25 },
+  gunman:      { cost: 4, speed: 50, hp: 200, damage: 300, width: 25, height: 25, color: "black", attackCooldown: 0.6, perceptionRadius: 200, attackRange: 30, image: {srcRunPlayer: "img/sprites/gunManBlueRun.png"}, totalFrames: 2, frameSpeed: 25},
+  viking:      { cost: 3, speed: 25, hp: 300, damage: 200, width: 30, height: 30, color: "lightgreen", attackCooldown: 2.0, perceptionRadius: 150, attackRange: 60, image: {srcRunPlayer: "img/sprites/vikingBlueRun.png"}, totalFrames: 2, frameSpeed: 25},
+  bigknight:   { cost: 6, speed: 10, hp: 4000, damage: 50, width: 50, height: 50, color: "darkblue", attackCooldown: 2.5, perceptionRadius: 150, attackRange: 20, image: {srcRunPlayer: "img/sprites/megaRitterBlueRun.png"}, totalFrames: 2, frameSpeed: 25},
   witch:       { cost: 9, speed: 15, hp: 2000, damage: 400, width: 30, height: 30, color: "red", attackCooldown: 3.0, perceptionRadius: 200, attackRange: 100, image: {srcRunPlayer: "img/sprites/hexeBlueRun.png"}, totalFrames: 2, frameSpeed: 25}
 };
 
