@@ -1,0 +1,156 @@
+
+  .bonus-container {
+    text-align: center;
+    position: relative;
+  }
+  
+  .bonus-box {
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(135deg, #333, #666);
+    margin: 30px auto;
+    border-radius: 20px;
+    animation: rotate 3s linear infinite;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease;
+  }
+  
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  .bonus-points {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .bonus-point {
+    width: 15px;
+    height: 15px;
+    background: red;
+    border-radius: 50%;
+  }
+  
+  .bonus-point.used {
+    background: #444;
+  }
+  
+  .bonus-stars {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 5px;
+  }
+  
+  .bonus-star {
+    width: 15px;
+    height: 15px;
+    background: gold;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  }
+  
+  .bonus-reward {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    color: black;
+    padding: 40px;
+    border-radius: 15px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+    width: 250px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  }
+  
+  .bonus-reward img {
+    max-width: 200px;
+    margin-bottom: 20px;
+  }
+  
+  .bonus-reward.hidden {
+    display: none;
+  }
+  
+  .bonus-reward p {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .bonus-available {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background: red;
+    padding: 10px 15px;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+  }
+  
+  .bonus-unlock {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    padding: 10px 20px;
+    background: green;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  @keyframes bonus-blink {
+    0% { background-color: red; }
+    50% { background-color: darkred; }
+    100% { background-color: red; }
+  }
+  
+  .bonus-blink {
+    animation: bonus-blink 1s infinite;
+  }
+  
+  /* Upgrade Effekt */
+  .bonus-box.upgraded {
+    animation: none;
+    transform: scale(1.2);
+    box-shadow: 0 0 20px gold;
+  }
+  
+  /* Explosion Partikel */
+  .bonus-particles {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    z-index: 9;
+    pointer-events: none;
+  }
+  
+  .bonus-particle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: orange;
+    border-radius: 50%;
+    opacity: 1;
+    animation: explode 0.8s ease-out forwards;
+  }
+  
+  @keyframes explode {
+    100% {
+      transform: translate(var(--x), var(--y)) scale(0.5);
+      opacity: 0;
+    }
+  }
+  

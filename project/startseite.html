@@ -104,6 +104,33 @@
         <!-- Belohnungsseite -->
         <div id="rewards" class="content">
             <div class="header" onclick="showPage('start')">Belohnungen</div>
+            <div class="bonus-container">
+                <div id="bonus-box" class="bonus-box">
+                  <div class="bonus-stars"></div>
+                </div>
+            
+                <div class="bonus-points">
+                  <div class="bonus-point"></div>
+                  <div class="bonus-point"></div>
+                  <div class="bonus-point"></div>
+                  <div class="bonus-point"></div>
+                  <div class="bonus-point"></div>
+                </div>
+            
+                <div id="bonus-reward" class="bonus-reward hidden">
+                  <img src="https://via.placeholder.com/200x120" alt="Belohnung" />
+                  <p>00</p>
+                </div>
+            
+                <!-- Partikel für Explosion -->
+                <div id="bonus-particles" class="bonus-particles"></div>
+            </div>
+            
+            <div class="bonus-available">
+            Boxen: <span id="bonus-count">5</span>
+            </div>
+        
+            <button id="bonus-unlock" class="bonus-unlock">+1 Box</button>
             <!-- Vertikale Navigation: Linker Button und rechter Button -->
             <div onclick="showPage('game'),startGame()" class="nav left">
                 <h3>Spiel</h3>
