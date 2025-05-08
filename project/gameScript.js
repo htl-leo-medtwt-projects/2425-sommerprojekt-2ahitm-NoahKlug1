@@ -57,10 +57,7 @@ const unitTypes = {
 
 // Festes Deck (8 eindeutige Karten, einmal am Spielstart definiert)
 const fixedDeck = [];
-while (fixedDeck.length < 8) {
-  let card = cardPool[Math.floor(Math.random() * cardPool.length)];
-  if (!fixedDeck.includes(card)) fixedDeck.push(card);
-}
+
 // Spieler-Deck (Hand aus den ersten 4 Karten des festen Decks)
 let playerHand = fixedDeck.slice(0, 4);
 // Bot-Deck (ebenfalls fix)
@@ -88,7 +85,7 @@ function updateCardHandUI() {
     cardHandEl.appendChild(div);
   });
 }
-updateCardHandUI();
+// to do check later updateCardHandUI();
 
 // ---------------------------
 // Arrays für Einheiten
@@ -131,7 +128,6 @@ canvas.addEventListener("click", (event) => {
   const clickX = event.clientX - rect.left;
   const clickY = event.clientY - rect.top;
   if (selectedCard === null) return;
-  if (playerHand[selectedCard] !== "blitz" && clickX > canvas.width / 2) return;
   const cardKey = playerHand[selectedCard];
   const cost = unitTypes[cardKey].cost;
   if (playerElixir < cost) return;
@@ -139,12 +135,8 @@ canvas.addEventListener("click", (event) => {
   const data = unitTypes[cardKey];
   let startX = Math.max(0, Math.min(clickX - data.width / 2, canvas.width / 2 - data.width));
   let startY = Math.max(0, Math.min(clickY - data.height / 2, canvas.height - data.height));
-  if (cardKey === "skeletonArmy") {
-    const newUnits = createUnit("player", startX, startY);
-    playerUnits.push(...newUnits);
-  } else {
-    playerUnits.push(createUnit("player", cardKey, startX, startY));
-  }
+  playerUnits.push(createUnit("player", cardKey, startX, startY));
+
   playerHand.splice(selectedCard, 1);
   while (playerHand.length < 4) {
     let candidate = fixedDeck[Math.floor(Math.random() * fixedDeck.length)];
@@ -527,13 +519,15 @@ function preloadImage(src) {
   img.src = src;
   return img;
 }
-
+let canvasImg; 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   // Hintergrund zeichnen
-  ctx.fillStyle = "green";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  if(!canvasImg){
+    canvasImg = preloadImage("img/designImg/battlefield.png");
+  }
+  ctx.drawImage(canvasImg ,0, 0, canvas.width, canvas.height);
 
   // Fluss zeichnen
   ctx.fillStyle = "#1565C0";
@@ -621,11 +615,11 @@ function gameLoop(timestamp) {
 }
 
 function startGame(){
-  requestAnimationFrame(gameLoop);
   lastTime = performance.now();
   gameOver = false;
   playerElixir = 5;
   elixirTimer = 0;
+  fixedDeck.length = 0;
   while (fixedDeck.length < 8) {
     let card = cardPool[Math.floor(Math.random() * cardPool.length)];
     if (!fixedDeck.includes(card)) fixedDeck.push(card);
@@ -638,4 +632,6 @@ function startGame(){
   playerUnits = [];
   enemyUnits = [];
   enemyCardTimer = 0;
+  updateCardHandUI();
+  requestAnimationFrame(gameLoop);
 }
