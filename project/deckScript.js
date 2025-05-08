@@ -51,7 +51,7 @@ function createDeckBox(number) {
   buttons.className = "deckButtonsContainer";
 
   // Hinzufügen-Button
-  const addBtn = document.createElement("button");
+  const addBtn = document.createElement("div");
   addBtn.className = "deckButton deckAddButton";
   addBtn.textContent = "Add";
   addBtn.onclick = (e) => {
@@ -60,7 +60,7 @@ function createDeckBox(number) {
   };
 
   // Info-Button
-  const infoBtn = document.createElement("button");
+  const infoBtn = document.createElement("div");
   infoBtn.className = "deckButton deckInfoButton";
   infoBtn.textContent = "Info";
   infoBtn.onclick = (e) => {

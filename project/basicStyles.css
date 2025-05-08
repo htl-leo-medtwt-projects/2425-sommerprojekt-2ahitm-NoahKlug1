@@ -87,6 +87,7 @@ h2{
     flex-direction: column;
 }
 .description p {
+    font-family: 'mideavleFont';
     padding: 2vh;
     border-radius: 2vh;
     background-color: rgba(28, 26, 26, 0.716);

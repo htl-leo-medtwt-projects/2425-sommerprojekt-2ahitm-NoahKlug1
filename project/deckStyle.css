@@ -61,20 +61,21 @@
 }
 
 .deckAddButton {
-  background-color: #2cc9c6;
-  color: black;
-}
-
-.deckAddButton:hover {
-  background-color: #2cc9c6;
+  font-family: 'mideavleFont';
+  font-size: larger;
+  background-image: url(img/designImg/justSchild.png);
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 .deckInfoButton {
-  background-color: gray;
-}
-
-.deckInfoButton:hover {
-  background-color: darkcyan;
+  font-family: 'mideavleFont';
+  font-size: larger;
+  background-image: url(img/designImg/justSchild.png);
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 .deckRemoveButton {
@@ -185,7 +186,10 @@
   width: 400px;
   max-width: 90%;
   padding: 20px;
-  background-color: #641c11;
+  background-image: url(img/designImg/schildForInfo.png);
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   border-radius: 10px;
   transform: translate(-50%, -50%);
   z-index: 10000;
