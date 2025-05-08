@@ -53,7 +53,7 @@ function createDeckBox(number) {
   // Hinzufügen-Button
   const addBtn = document.createElement("button");
   addBtn.className = "deckButton deckAddButton";
-  addBtn.textContent = "Hinzufügen";
+  addBtn.textContent = "Add";
   addBtn.onclick = (e) => {
     e.stopPropagation();
     handleDeckAddBox(`Box${number}`, container);

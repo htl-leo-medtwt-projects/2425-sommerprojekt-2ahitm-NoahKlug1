@@ -7,9 +7,11 @@
   .bonus-box {
     width: 150px;
     height: 150px;
-    background: linear-gradient(135deg, #333, #666);
-    margin: 30px auto;
-    border-radius: 20px;
+    background-image: url('img/designImg/betterDice.png');
+    background-position: center;
+    background-size: 120% 120%;
+    background-repeat: no-repeat;
+    margin: 30vh auto;
     animation: rotate 3s linear infinite;
     cursor: pointer;
     position: relative;
