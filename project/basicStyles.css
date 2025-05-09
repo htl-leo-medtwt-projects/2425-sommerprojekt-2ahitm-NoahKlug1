@@ -31,10 +31,16 @@ body {
     cursor: pointer;
     font-size: 400%;
     font-weight: bold;
+    margin-bottom: 1vh;
+}
+.headerH2{
+    margin-top: -2vh;
     margin-bottom: 0;
+    font-size: 140%;
+    font-family: 'pixelFont';
 }
 h2{
-    font-size: larger;
+    font-size: 140%;
     font-family: 'pixelFont';
 }
 /* Navigation: Vertikale Buttons an linken und rechten Seiten */
@@ -88,6 +94,7 @@ h2{
 }
 .description p {
     font-family: 'mideavleFont';
+    font-size: 140%;
     padding: 2vh;
     border-radius: 2vh;
     background-color: rgba(28, 26, 26, 0.716);

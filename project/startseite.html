@@ -19,26 +19,26 @@
     <div class="container">
         <!-- Startseite -->
         <div id="start" class="content active">
-            <div class="header" onclick="showPage('start') ">Skibidi Royle</div>
+            <div class="header" onclick="showPage('start') ">Skibidi Royale</div>
             <!-- Beschreibung der einzelnen Optionen -->
             <!-- Drei klickbare Boxen zur Navigation -->
             <div class="start-container">
                 <div class="description" id="gameDescription">
-                    <h2>Spiel starten</h2>
+                    <h2 class="headerH2">Spiel starten</h2>
                     <p>Spiele gegen den Bot, wähle dein Deck und erlebe actiongeladene Tower Defense-Action.</p>
                     <div class="box" onclick="showPage('game'), startGame()">
                         <h3>Spiel</h3>
                     </div>
                 </div>
                 <div class="description" id="boniDescription">
-                    <h2>Belohnungen</h2>
+                    <h2 class="headerH2">Belohnungen</h2>
                     <p>Schau dir deine freigeschalteten Belohnungen an und löse neue Items ein.</p>
                     <div class="box" onclick="showPage('rewards')">
                         <h3>Belohnungen</h3>
                     </div>
                 </div>
                 <div class="description" id="deckDescription" >
-                    <h2>Deck-Management</h2>
+                    <h2 class="headerH2">Deck-Management</h2>
                     <p>Gestalte dein Deck, verbessere deine Einheiten und passe deine Strategie an.</p>
                     <div class="box" onclick="showPage('deck')">
                         <h3>Deck</h3>
@@ -81,11 +81,13 @@
                 <canvas id="gameCanvas" width="800" height="500"></canvas>
                 <div id="ui">
                   <div id="info">
+                    <!--
                     <span>Player Big Tower HP: <span id="playerTowerHP">1000</span></span>
                     &nbsp;&nbsp;|&nbsp;&nbsp;
                     <span>Enemy Big Tower HP: <span id="enemyTowerHP">1000</span></span>
                     &nbsp;&nbsp;|&nbsp;&nbsp;
                     <span>Elixir: <span id="playerElixir">0</span> / 10</span>
+                    -->
                     <div id="elixirProgressContainer">
                       <div id="elixirProgress"></div>
                     </div>

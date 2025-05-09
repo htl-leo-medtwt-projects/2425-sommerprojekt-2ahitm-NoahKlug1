@@ -479,7 +479,7 @@ function update(deltaTime) {
     if (playerElixir < maxElixir) { playerElixir++; }
     elixirTimer -= 2;
   }
-  playerElixirEl.textContent = playerElixir;
+  //playerElixirEl.textContent = playerElixir;
   elixirProgressEl.style.width = ((playerElixir / maxElixir) * 100) + "%";
   if (playerElixir === maxElixir) {
     elixirProgressEl.classList.add("shake");
@@ -508,8 +508,8 @@ function update(deltaTime) {
     gameOver = true;
   }
   
-  document.getElementById("playerTowerHP").textContent = playerTowers[1].hp;
-  document.getElementById("enemyTowerHP").textContent = enemyTowers[1].hp;
+  //document.getElementById("playerTowerHP").textContent = playerTowers[1].hp;
+  //document.getElementById("enemyTowerHP").textContent = enemyTowers[1].hp;
 }
 
 // ---------------------------
@@ -525,7 +525,7 @@ function draw() {
 
   // Hintergrund zeichnen
   if(!canvasImg){
-    canvasImg = preloadImage("img/designImg/battlefield.png");
+    canvasImg = preloadImage("img/designImg/battlefieldTryOut.png");
   }
   ctx.drawImage(canvasImg ,0, 0, canvas.width, canvas.height);
 

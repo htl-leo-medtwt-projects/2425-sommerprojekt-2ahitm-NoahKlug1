@@ -5,13 +5,17 @@
   }
   
   .bonus-box {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
+    border-radius: 8vh;
     background-image: url('img/designImg/betterDice.png');
     background-position: center;
     background-size: 120% 120%;
     background-repeat: no-repeat;
-    margin: 30vh auto;
+    margin-top: 30vh;
+    margin-bottom: 8vh;
+    margin-right: auto;
+    margin-left: auto;
     animation: rotate 3s linear infinite;
     cursor: pointer;
     position: relative;
@@ -59,7 +63,7 @@
   
   .bonus-reward {
     position: absolute;
-    top: 50%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
     background: white;
@@ -68,9 +72,11 @@
     border-radius: 15px;
     display: none;
     flex-direction: column;
-    align-items: center;
+    justify-content: center;
+    align-items: stretch;
     z-index: 10;
-    width: 250px;
+    height: 30vh;
+    width: 30vh;
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
   }
   
