@@ -4,13 +4,12 @@ const points = document.querySelectorAll(".bonus-point");
 const reward = document.getElementById("bonus-reward");
 const rewardNumber = reward.querySelector("p");
 const countEl = document.getElementById("bonus-count");
-const unlockBtn = document.getElementById("bonus-unlock");
 const availableDisplay = document.querySelector(".bonus-available");
 const particlesContainer = document.getElementById("bonus-particles");
 
 let clickCount = 0;
 let upgradeLevel = 0;
-let availableBoxes = 5;
+let availableBoxes = 0;
 
 function updateBoxCount() {
   countEl.textContent = availableBoxes;
@@ -18,8 +17,10 @@ function updateBoxCount() {
   if (availableBoxes > 0) {
     box.style.display = "block";
     availableDisplay.classList.remove("bonus-blink");
+    resetBoxState();
   } else {
-    box.style.display = "none";
+    box.style.animation = "infinite";
+    resetBoxState();
     availableDisplay.classList.add("bonus-blink");
   }
 }
@@ -65,6 +66,9 @@ function explodeBox() {
     const baseValue = 7;
     const perStar = 13;
     const total = baseValue + (upgradeLevel * perStar);
+    let randomImg = Math.floor(Math.random()* 12)
+    //todo safe to local storage and upgrade troops 
+    document.getElementById('bonus-reward-img').src = unitTypesArray[randomImg].image; 
     rewardNumber.textContent = total;
 
     reward.classList.remove("hidden");
@@ -112,11 +116,6 @@ reward.addEventListener("click", () => {
   }
 });
 
-unlockBtn.addEventListener("click", () => {
-  if (availableBoxes < 5) {
-    availableBoxes++;
-    updateBoxCount();
-  }
-});
+
 
 updateBoxCount();

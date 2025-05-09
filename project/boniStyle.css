@@ -8,12 +8,12 @@
     width: 200px;
     height: 200px;
     border-radius: 8vh;
-    background-image: url('img/designImg/betterDice.png');
+    background-image: url(img/designImg/betterDice.png);
     background-position: center;
     background-size: 120% 120%;
     background-repeat: no-repeat;
     margin-top: 30vh;
-    margin-bottom: 8vh;
+    margin-bottom: 12vh;
     margin-right: auto;
     margin-left: auto;
     animation: rotate 3s linear infinite;
@@ -63,26 +63,29 @@
   
   .bonus-reward {
     position: absolute;
-    top: 60%;
+    top: 49%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: white;
-    color: black;
-    padding: 40px;
-    border-radius: 15px;
+    background-image: url(img/designImg/bilderRahmen4OhneBg.png);
+    background-position: center;
+    background-size:  100% 100%;
+    background-repeat: no-repeat;
+    color: white;
+    padding-top: 4vh;
+    font-family: 'pixelFont';
     display: none;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
-    align-items: stretch;
     z-index: 10;
-    height: 30vh;
-    width: 30vh;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    height: 64vh;
+    width: 45vh;
   }
   
   .bonus-reward img {
     max-width: 200px;
-    margin-bottom: 20px;
+    max-height: 200px;
+    margin-bottom: -2vh;
   }
   
   .bonus-reward.hidden {

@@ -6,6 +6,8 @@ let gameOver = false;
 
 // ---------------------------
 // ELIXIR: Spieler & Bot
+let playerWinner = false; 
+let enemyWinner = false; 
 let playerElixir = 5;
 const maxElixir = 10;
 let elixirTimer = 0;
@@ -23,12 +25,12 @@ let botElixirTimer = 0;
 function createTower(owner, type, x, y, width, height, hp, damage, range) {
   return { owner, type, x, y, width, height, hp, maxHp: hp, damage, range, attackCooldown: 1.0, attackTimer: 0 };
 }
-const playerTowers = [
+let playerTowers = [
   createTower("player", "small", 150, 60, 50, 60, 1500, 10, 200),
   createTower("player", "big", 50, canvas.height / 2 - 40, 60, 70, 2000, 20, 300),
   createTower("player", "small", 150, canvas.height - 110, 50, 60, 1500, 10, 200)
 ];
-const enemyTowers = [
+let enemyTowers = [
   createTower("enemy", "small", canvas.width - 150 - 30, 60, 50, 60, 1500, 10, 200),
   createTower("enemy", "big", canvas.width - 50 - 40, canvas.height / 2 - 40, 60, 70, 2000, 20, 300),
   createTower("enemy", "small", canvas.width - 150 - 30, canvas.height - 110, 50, 60, 1500, 10, 200)
@@ -504,7 +506,12 @@ function update(deltaTime) {
   playerUnits = playerUnits.filter(u => u.hp > 0);
   enemyUnits = enemyUnits.filter(u => u.hp > 0);
   
-  if (playerTowers[1].hp <= 0 || enemyTowers[1].hp <= 0) {
+  if (playerTowers[1].hp <= 0) {
+    playerWinner = true; 
+    gameOver = true;
+  }
+  if (enemyTowers[1].hp <= 0) {
+    enemyWinner = true; 
     gameOver = true;
   }
   
@@ -608,13 +615,69 @@ function gameLoop(timestamp) {
     draw();
     requestAnimationFrame(gameLoop);
   } else {
-    ctx.fillStyle = "white";
-    ctx.font = "48px sans-serif";
-    ctx.fillText("Game Over", canvas.width / 2 - 120, canvas.height / 2);
+    if(playerWinner){
+      availableBoxes += 10; 
+      updateBoxCount();
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // Hintergrund
+      ctx.fillStyle = "#111"; // dunkler Hintergrund
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Text-Shadow
+      ctx.shadowColor = "gold";
+      ctx.shadowBlur = 15;
+
+      // Text
+      ctx.fillStyle = "white";
+      ctx.font = "64px 'pixelFont'";
+      ctx.textAlign = "center";
+      ctx.fillText("🎉 YOU WON! 🎉", canvas.width / 2, canvas.height / 2 - 40);
+
+      ctx.font = "32px 'pixelFont'";
+      ctx.fillText("Congratulations, you did it!", canvas.width / 2, canvas.height / 2 + 20);
+
+      // Schatten zurücksetzen
+      ctx.shadowBlur = 0;
+    }else{
+      availableBoxes += 5; 
+      updateBoxCount();
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // Hintergrund
+      ctx.fillStyle = "#200"; // dunkles Rot
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Text-Shadow
+      ctx.shadowColor = "red";
+      ctx.shadowBlur = 20;
+
+      // Text
+      ctx.fillStyle = "white";
+      ctx.font = "64px 'pixelFont'";
+      ctx.textAlign = "center";
+      ctx.fillText("☠ YOU LOST ☠", canvas.width / 2, canvas.height / 2 - 40);
+
+      ctx.font = "28px 'pixelFont'";
+      ctx.fillText("Better luck next time...", canvas.width / 2, canvas.height / 2 + 20);
+
+      // Schatten zurücksetzen
+      ctx.shadowBlur = 0;
+    } 
   }
 }
 
 function startGame(){
+  playerTowers = [
+    createTower("player", "small", 150, 60, 50, 60, 1500, 10, 200),
+    createTower("player", "big", 50, canvas.height / 2 - 40, 60, 70, 2000, 20, 300),
+    createTower("player", "small", 150, canvas.height - 110, 50, 60, 1500, 10, 200)
+  ];
+  enemyTowers = [
+    createTower("enemy", "small", canvas.width - 150 - 30, 60, 50, 60, 1500, 10, 200),
+    createTower("enemy", "big", canvas.width - 50 - 40, canvas.height / 2 - 40, 60, 70, 2000, 20, 300),
+    createTower("enemy", "small", canvas.width - 150 - 30, canvas.height - 110, 50, 60, 1500, 10, 200)
+  ];
+  playerWinner = false; 
+  enemyWinner = false; 
   lastTime = performance.now();
   gameOver = false;
   playerElixir = 5;
