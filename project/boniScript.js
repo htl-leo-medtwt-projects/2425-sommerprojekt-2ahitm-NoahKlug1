@@ -11,6 +11,12 @@ let clickCount = 0;
 let upgradeLevel = 0;
 let availableBoxes = 0;
 
+if(JSON.parse(localStorage.getItem('available boxes')) == null){
+  localStorage.setItem('available boxes', JSON.stringify(availableBoxes));
+}else{
+  availableBoxes = JSON.parse(localStorage.getItem('available boxes')); 
+}
+
 function updateBoxCount() {
   countEl.textContent = "Boxen "+ availableBoxes;
 
@@ -75,10 +81,12 @@ function explodeBox() {
     let unitType = unitTypesArray[randomImg].type; 
     unitTypes[unitType].level += total; 
 
-    if(unitTypes[unitType].level == 100){
-      unitTypes[unitType].damage *= 1.1; 
-      unitTypes[unitType].hp *= 1.1; 
-      unitTypes[unitType].level = 0; 
+    if(unitTypes[unitType].level >= 100){
+      unitTypes[unitType].damage = Math.round(unitTypes[unitType].damage *1.1); 
+      unitTypes[unitType].hp = Math.round(unitTypes[unitType].hp *1.1); 
+       
+      unitTypes[unitType].level -= 100; 
+      displayCardPool();
     }
     localStorage.setItem('unit types', JSON.stringify(unitTypes));
 
@@ -86,6 +94,7 @@ function explodeBox() {
     reward.style.display = "flex";
 
     availableBoxes--;
+    localStorage.setItem('available boxes', JSON.stringify(availableBoxes));
     updateBoxCount();
   }, 1000);
 }

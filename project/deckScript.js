@@ -34,6 +34,8 @@ function createDeckBox(number) {
   container.className = "deckCardContainer";
   container.setAttribute("data-box", `Box${number}`);
 
+  let unitType = unitTypesArray[number].type; 
+
   // Inhalt der Karte als HTML (statt textContent)
   const card = document.createElement("div");
   card.className = "deckCard";
@@ -65,7 +67,7 @@ function createDeckBox(number) {
   infoBtn.textContent = "Info";
   infoBtn.onclick = (e) => {
     e.stopPropagation();
-    showDeckInfo(`${unitTypesArray[number].type.toUpperCase()}`, `<p id="deckInfoP">DAMAGE: ${unitTypesArray[number].damage}<br> HEALTH: ${unitTypesArray[number].hp} <br>ELEXIR-COST: ${unitTypesArray[number].cost}`);
+    showDeckInfo(`${unitTypesArray[number].type.toUpperCase()}`, `<p id="deckInfoP">DAMAGE: ${unitTypes[unitType].damage}<br> HEALTH: ${unitTypes[unitType].hp} <br>ELEXIR-COST: ${unitTypes[unitType].cost}`);
   };
 
   // Buttons zum Container hinzufügen

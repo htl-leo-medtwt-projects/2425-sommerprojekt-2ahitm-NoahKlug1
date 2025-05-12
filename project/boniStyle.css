@@ -110,8 +110,8 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background-image: url(img/designImg/bilderRahmen.png);
-    background-position: center;
-    background-size: 150% 100%;
+    background-position: 42%;
+    background-size: 190% 100%;
     background-repeat: no-repeat;
     transition: color 0.3s;
   }

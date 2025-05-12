@@ -628,6 +628,7 @@ function gameLoop(timestamp) {
   } else {
     if(playerWinner){
       availableBoxes += 10; 
+      localStorage.setItem('available boxes', JSON.stringify(availableBoxes));
       updateBoxCount();
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       // Hintergrund
@@ -651,6 +652,7 @@ function gameLoop(timestamp) {
       ctx.shadowBlur = 0;
     }else{
       availableBoxes += 5; 
+      localStorage.setItem('available boxes', JSON.stringify(availableBoxes));
       updateBoxCount();
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       // Hintergrund
