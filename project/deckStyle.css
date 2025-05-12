@@ -79,7 +79,10 @@
 }
 
 .deckRemoveButton {
-  background-color: #dc3545;
+  background-image: url(img/designImg/redXButton.png);
+  background-position: center;
+  background-size: 120%;
+  background-repeat: no-repeat;
   color: white;
 }
 #deckInfoTitle{
@@ -161,7 +164,6 @@
   top: 5px;
   right: 5px;
   font-size: 10px;
-  padding: 2px 5px;
   border-radius: 4px;
 }
 
@@ -207,12 +209,14 @@
   position: absolute;
   top: 10px;
   right: 10px;
-  background-color: red;
+  background-image: url(img/designImg/redXButton.png);
+  background-position: center;
+  background-size: 120%;
+  background-repeat: no-repeat;
   color: white;
   border: none;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   font-weight: bold;
   cursor: pointer;
 }

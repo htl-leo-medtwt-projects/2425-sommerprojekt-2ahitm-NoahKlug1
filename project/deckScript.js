@@ -101,9 +101,9 @@ function displayCardPool() {
       </div>
     `;
     
-    const removeBtn = document.createElement("button");
+    const removeBtn = document.createElement("div");
     removeBtn.className = "deckButton deckRemoveButton deckRemoveSmall";
-    removeBtn.textContent = "✖";
+    //removeBtn.textContent = "✖";
     removeBtn.onclick = (e) => {
       e.stopPropagation();
       handleDeckRemoveBox(newCard, `Box${unitIndex}`);
