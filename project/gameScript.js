@@ -507,11 +507,11 @@ function update(deltaTime) {
   enemyUnits = enemyUnits.filter(u => u.hp > 0);
   
   if (playerTowers[1].hp <= 0) {
-    playerWinner = true; 
+    enemyWinner = true; 
     gameOver = true;
   }
   if (enemyTowers[1].hp <= 0) {
-    enemyWinner = true; 
+    playerWinner = true; 
     gameOver = true;
   }
   

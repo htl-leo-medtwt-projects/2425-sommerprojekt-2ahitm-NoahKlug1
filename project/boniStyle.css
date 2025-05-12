@@ -99,35 +99,33 @@
   }
   
   .bonus-available {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    background: red;
-    padding: 10px 15px;
-    border-radius: 10px;
-    transition: background-color 0.3s;
+    font-family: 'pixelFont';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    width: 20vh;
+    position: absolute;
+    top: 93%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url(img/designImg/bilderRahmen.png);
+    background-position: center;
+    background-size: 150% 100%;
+    background-repeat: no-repeat;
+    transition: color 0.3s;
   }
   
-  .bonus-unlock {
-    position: fixed;
-    bottom: 10px;
-    left: 10px;
-    padding: 10px 20px;
-    background: green;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-  }
+  
   
   @keyframes bonus-blink {
-    0% { background-color: red; }
-    50% { background-color: darkred; }
-    100% { background-color: red; }
+    0% {color: red;}
+    50% {color: darkred;}
+    100% {color: red;}
   }
   
   .bonus-blink {
-    animation: bonus-blink 1s infinite;
+    animation: bonus-blink 2s infinite;
   }
   
   /* Upgrade Effekt */

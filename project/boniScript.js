@@ -12,7 +12,7 @@ let upgradeLevel = 0;
 let availableBoxes = 0;
 
 function updateBoxCount() {
-  countEl.textContent = availableBoxes;
+  countEl.textContent = "Boxen "+ availableBoxes;
 
   if (availableBoxes > 0) {
     box.style.display = "block";
