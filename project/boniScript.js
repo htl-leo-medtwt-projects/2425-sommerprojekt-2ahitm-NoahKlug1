@@ -71,6 +71,17 @@ function explodeBox() {
     document.getElementById('bonus-reward-img').src = unitTypesArray[randomImg].image; 
     rewardNumber.textContent = total;
 
+    //upgrade safeing 
+    let unitType = unitTypesArray[randomImg].type; 
+    unitTypes[unitType].level += total; 
+
+    if(unitTypes[unitType].level == 100){
+      unitTypes[unitType].damage *= 1.1; 
+      unitTypes[unitType].hp *= 1.1; 
+      unitTypes[unitType].level = 0; 
+    }
+    localStorage.setItem('unit types', JSON.stringify(unitTypes));
+
     reward.classList.remove("hidden");
     reward.style.display = "flex";
 
