@@ -104,7 +104,7 @@ h2{
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 100%;
+    width: 85%;
 }
 .box {
     font-family: 'pixelFont';

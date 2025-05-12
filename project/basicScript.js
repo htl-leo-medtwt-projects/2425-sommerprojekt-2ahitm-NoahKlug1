@@ -36,3 +36,4 @@ var swiper = new Swiper('.swiper-container', {
     // Mouse-Wheel-Scrolling aktivieren
     mousewheel: true,
   });
+

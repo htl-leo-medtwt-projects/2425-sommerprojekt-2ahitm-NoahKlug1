@@ -65,7 +65,7 @@ function createDeckBox(number) {
   infoBtn.textContent = "Info";
   infoBtn.onclick = (e) => {
     e.stopPropagation();
-    showDeckInfo(`${unitTypesArray[number].type.toUpperCase()}`, `<p>DAMAGE: ${unitTypesArray[number].damage}<br> HEALTH: ${unitTypesArray[number].hp} <br>ELEXIR-COST: ${unitTypesArray[number].cost}`);
+    showDeckInfo(`${unitTypesArray[number].type.toUpperCase()}`, `<p id="deckInfoP">DAMAGE: ${unitTypesArray[number].damage}<br> HEALTH: ${unitTypesArray[number].hp} <br>ELEXIR-COST: ${unitTypesArray[number].cost}`);
   };
 
   // Buttons zum Container hinzufügen
@@ -155,6 +155,7 @@ function handleDeckAddBox(boxLabel, boxElement) {
   } else {
     // Füge die neue Karte zum cardPool hinzu
     cardPool.push(cardType);
+    localStorage.setItem('deck', JSON.stringify(cardPool));
     deckAddedBoxes.add(boxLabel);
     boxElement.remove();
     displayCardPool();
@@ -178,7 +179,8 @@ function handleDeckReplaceBox(existingCard, newCardType) {
   if (oldCardIndex !== -1) {
     cardPool[oldCardIndex] = newCardTypeString;
   }
-  
+  localStorage.setItem('deck', JSON.stringify(cardPool));
+
   // Aktualisiere die Anzeige
   displayCardPool();
   
@@ -197,6 +199,7 @@ function handleDeckRemoveBox(card, label) {
   const cardIndex = cardPool.indexOf(cardText);
   if (cardIndex !== -1) {
     cardPool.splice(cardIndex, 1);
+    localStorage.setItem('deck', JSON.stringify(cardPool));
   }
   
   deckAddedBoxes.delete(label);
@@ -235,6 +238,8 @@ document.getElementById("deckCloseInfo").onclick = () => {
 deckResetBtn.onclick = () => {
   // Setze cardPool auf den Standardwert zurück
   cardPool = ["swordsman", "archer", "giant", "knight", "skeleton", "wizard", "gunman", "tennis"];
+  localStorage.setItem('deck', JSON.stringify(cardPool));
+
   deckAddedBoxes.clear();
   deckSelectedBox = null;
   

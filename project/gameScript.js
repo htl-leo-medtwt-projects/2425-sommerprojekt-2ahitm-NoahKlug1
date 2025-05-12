@@ -42,6 +42,11 @@ let cardPool = [
   "swordsman", "archer", "giant", "knight",
   "skeleton", "wizard", "gunman", "tennis"
 ];
+if(JSON.parse(localStorage.getItem('deck')) == null){
+  localStorage.setItem('deck', JSON.stringify(cardPool));
+}else{
+  cardPool = JSON.parse(localStorage.getItem('deck')); 
+}
 const unitTypes = {
   swordsman:   { cost: 3, speed: 20, hp: 600, damage: 150, width: 30, height: 30, color: "cyan", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 20, image: {srcRunPlayer: "img/sprites/barbarBlueRun.png"}, totalFrames: 2, frameSpeed: 25},
   archer:      { cost: 3, speed: 20, hp: 250, damage: 120, width: 30, height: 30, color: "green", attackCooldown: 1.2, perceptionRadius: 150, attackRange: 80, image: {srcRunPlayer: "img/sprites/archerBlueRun.png"}, totalFrames: 2, frameSpeed: 25},

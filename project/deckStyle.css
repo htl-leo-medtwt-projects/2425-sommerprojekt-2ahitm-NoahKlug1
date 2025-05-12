@@ -82,6 +82,10 @@
   background-color: #dc3545;
   color: white;
 }
+#deckInfoTitle{
+  margin-bottom: 0;
+  margin-block-start: 1.5em;
+}
 
 .deckRemoveButton:hover {
   background-color: #a71d2a;
@@ -292,4 +296,9 @@
   font-size: 12px;
   text-align: center;
   pointer-events: none;
+}
+
+#deckInfoP{
+  margin-top: 0;
+  font-size: 200%;
 }
