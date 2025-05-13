@@ -48,18 +48,18 @@ if(JSON.parse(localStorage.getItem('deck')) == null){
   cardPool = JSON.parse(localStorage.getItem('deck')); 
 }
 let unitTypes = {
-  swordsman:   { cost: 3, speed: 20, hp: 600, damage: 150, width: 30, height: 30, color: "cyan", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 20, image: {srcRunPlayer: "img/sprites/barbarBlueRun.png"}, totalFrames: 2, frameSpeed: 25, level: 0},
-  archer:      { cost: 3, speed: 20, hp: 250, damage: 120, width: 30, height: 30, color: "green", attackCooldown: 1.2, perceptionRadius: 150, attackRange: 80, image: {srcRunPlayer: "img/sprites/archerBlueRun.png"}, totalFrames: 2, frameSpeed: 25, level: 0},
-  giant:       { cost: 5, speed: 10, hp: 4232, damage: 100, width: 40, height: 40, color: "purple", attackCooldown: 2.0, perceptionRadius: 150, attackRange: 20, image: {srcRunPlayer: "img/sprites/rieseBlueRun.png"}, totalFrames: 2, frameSpeed: 25, level: 0},
-  knight:      { cost: 4, speed: 20, hp: 1703, damage: 140, width: 30, height: 30, color: "yellow", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 20, image: {srcRunPlayer: "img/sprites/ritterBlueRun.png"}, totalFrames: 2, frameSpeed: 25, level: 0},
-  skeleton:    { cost: 1, speed: 30, hp: 100, damage: 100, width: 20, height: 20, color: "gray", attackCooldown: 0.8, perceptionRadius: 100, attackRange: 30, image: {srcRunPlayer: "img/sprites/skelletBlueRun.png"}, totalFrames: 2, frameSpeed: 25, level: 0},
-  wizard:      { cost: 6, speed: 40, hp: 500, damage: 200, width: 30, height: 30, color: "magenta", attackCooldown: 1.5, perceptionRadius: 150, attackRange: 50, image: {srcRunPlayer: "img/sprites/magierBlueRun.png"}, totalFrames: 2, frameSpeed: 25, level: 0},
-  firewizard:  { cost: 3, speed: 40, hp: 120, damage: 100, width: 25, height: 25, color: "pink", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 40, image: {srcRunPlayer: "img/sprites/magierFeuerBlueRun.png"}, totalFrames: 2, frameSpeed: 25, level: 0},
-  tennis:      { cost: 2, speed: 40, hp: 200, damage: 100, width: 25, height: 25, color: "darkgreen", attackCooldown: 0.8, perceptionRadius: 150, attackRange: 30, image: {srcRunPlayer: "img/sprites/tableTennisManBlueRun.png"}, totalFrames: 2, frameSpeed: 25, level: 0},
-  gunman:      { cost: 4, speed: 50, hp: 200, damage: 300, width: 25, height: 25, color: "black", attackCooldown: 0.6, perceptionRadius: 200, attackRange: 30, image: {srcRunPlayer: "img/sprites/gunManBlueRun.png"}, totalFrames: 2, frameSpeed: 25, level: 0},
-  viking:      { cost: 3, speed: 25, hp: 300, damage: 200, width: 30, height: 30, color: "lightgreen", attackCooldown: 2.0, perceptionRadius: 150, attackRange: 60, image: {srcRunPlayer: "img/sprites/vikingBlueRun.png"}, totalFrames: 2, frameSpeed: 25, level: 0},
-  bigknight:   { cost: 6, speed: 10, hp: 4000, damage: 50, width: 50, height: 50, color: "darkblue", attackCooldown: 2.5, perceptionRadius: 150, attackRange: 20, image: {srcRunPlayer: "img/sprites/megaRitterBlueRun.png"}, totalFrames: 2, frameSpeed: 25, level: 0},
-  witch:       { cost: 9, speed: 15, hp: 2000, damage: 400, width: 30, height: 30, color: "red", attackCooldown: 3.0, perceptionRadius: 200, attackRange: 100, image: {srcRunPlayer: "img/sprites/hexeBlueRun.png"}, totalFrames: 2, frameSpeed: 25, level: 0}
+  swordsman:   { cost: 3, speed: 20, hp: 600, damage: 150, width: 30, height: 30, color: "cyan", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 20, image: {srcRunPlayer: "img/sprites/barbarBlueRun.png"}, srcPlayer: "img/sprites/barbarBlue.png", totalFrames: 2, frameSpeed: 25, level: 0},
+  archer:      { cost: 3, speed: 20, hp: 250, damage: 120, width: 30, height: 30, color: "green", attackCooldown: 1.2, perceptionRadius: 150, attackRange: 80, image: {srcRunPlayer: "img/sprites/archerBlueRun.png"}, srcPlayer: "img/sprites/archerBlue.png", totalFrames: 2, frameSpeed: 25, level: 0},
+  giant:       { cost: 5, speed: 10, hp: 4232, damage: 100, width: 40, height: 40, color: "purple", attackCooldown: 2.0, perceptionRadius: 150, attackRange: 20, image: {srcRunPlayer: "img/sprites/rieseBlueRun.png"}, srcPlayer: "img/sprites/rieseBlue.png", totalFrames: 2, frameSpeed: 25, level: 0},
+  knight:      { cost: 4, speed: 20, hp: 1703, damage: 140, width: 30, height: 30, color: "yellow", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 20, image: {srcRunPlayer: "img/sprites/ritterBlueRun.png"}, srcPlayer: "img/sprites/ritterBlue.png", totalFrames: 2, frameSpeed: 25, level: 0},
+  skeleton:    { cost: 1, speed: 30, hp: 100, damage: 100, width: 20, height: 20, color: "gray", attackCooldown: 0.8, perceptionRadius: 100, attackRange: 30, image: {srcRunPlayer: "img/sprites/skelletBlueRun.png"}, srcPlayer: "img/sprites/skelletBlue.png", totalFrames: 2, frameSpeed: 25, level: 0},
+  wizard:      { cost: 6, speed: 40, hp: 500, damage: 200, width: 30, height: 30, color: "magenta", attackCooldown: 1.5, perceptionRadius: 150, attackRange: 50, image: {srcRunPlayer: "img/sprites/magierBlueRun.png"}, srcPlayer: "img/sprites/magierBlue.png", totalFrames: 2, frameSpeed: 25, level: 0},
+  firewizard:  { cost: 3, speed: 40, hp: 120, damage: 100, width: 25, height: 25, color: "pink", attackCooldown: 1.0, perceptionRadius: 150, attackRange: 40, image: {srcRunPlayer: "img/sprites/magierFeuerBlueRun.png", srcPlayer: "img/sprites/magierFeuerBlue.png"}, totalFrames: 2, frameSpeed: 25, level: 0},
+  tennis:      { cost: 2, speed: 40, hp: 200, damage: 100, width: 25, height: 25, color: "darkgreen", attackCooldown: 0.8, perceptionRadius: 150, attackRange: 30, image: {srcRunPlayer: "img/sprites/tableTennisManBlueRun.png"}, srcPlayer: "img/sprites/tableTennisManBlue.png", totalFrames: 2, frameSpeed: 25, level: 0},
+  gunman:      { cost: 4, speed: 50, hp: 200, damage: 300, width: 25, height: 25, color: "black", attackCooldown: 0.6, perceptionRadius: 200, attackRange: 30, image: {srcRunPlayer: "img/sprites/gunManBlueRun.png"}, srcPlayer: "img/sprites/gunManBlue.png", totalFrames: 2, frameSpeed: 25, level: 0},
+  viking:      { cost: 3, speed: 25, hp: 300, damage: 200, width: 30, height: 30, color: "lightgreen", attackCooldown: 2.0, perceptionRadius: 150, attackRange: 60, image: {srcRunPlayer: "img/sprites/vikingBlueRun.png"}, srcPlayer: "img/sprites/vikingBlue.png", totalFrames: 2, frameSpeed: 25, level: 0},
+  bigknight:   { cost: 6, speed: 10, hp: 4000, damage: 50, width: 50, height: 50, color: "darkblue", attackCooldown: 2.5, perceptionRadius: 150, attackRange: 20, image: {srcRunPlayer: "img/sprites/megaRitterBlueRun.png"}, srcPlayer: "img/sprites/megaRitterBlue.png", totalFrames: 2, frameSpeed: 25, level: 0},
+  witch:       { cost: 9, speed: 15, hp: 2000, damage: 400, width: 30, height: 30, color: "red", attackCooldown: 3.0, perceptionRadius: 200, attackRange: 100, image: {srcRunPlayer: "img/sprites/hexeBlueRun.png"}, srcPlayer: "img/sprites/hexeBlue.png", totalFrames: 2, frameSpeed: 25, level: 0}
 };
 
 if(JSON.parse(localStorage.getItem('unit types')) == null){
@@ -83,7 +83,7 @@ function updateCardHandUI() {
   cardHandEl.innerHTML = "";
   playerHand.forEach((card, index) => {
     const cardCost = unitTypes[card].cost;
-    const cardImg = unitTypes[card].image.srcRunPlayer;
+    const cardImg = unitTypes[card].srcPlayer;
 
     const wrapper = document.createElement("div");
     wrapper.className = "card-wrapper";
@@ -184,8 +184,7 @@ function createUnit(owner, type, x, y) {
     attackRange: data.attackRange,
     flashTimer: 0,
     currentTarget: null,
-    imageSrc: data.image.srcRunPlayer,
-    imageSrc2: "img/sprites/archerBlue.png", 
+    imageSrc: data.image.srcRunPlayer, 
     totalFrames: data.totalFrames,
     frameSpeed: data.frameSpeed,
     frameCounter: 0,
