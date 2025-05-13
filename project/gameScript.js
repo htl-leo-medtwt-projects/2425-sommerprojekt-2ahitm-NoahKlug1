@@ -194,7 +194,7 @@ function getDistance(a, b) {
 
 // ---------------------------
 // River & Bridge-Konstanten
-const riverWidth = 20;
+const riverWidth = 25;
 const riverX = canvas.width / 2 - riverWidth / 2;
 const bridgeTop = { y: 50, height: 50, centerY: 75 };
 const bridgeBottom = { y: canvas.height - 100, height: 50, centerY: canvas.height - 75 };
@@ -538,23 +538,36 @@ function preloadImage(src) {
   return img;
 }
 let canvasImg; 
+let riverImg; 
+let bridgeImg; 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   // Hintergrund zeichnen
   if(!canvasImg){
-    canvasImg = preloadImage("img/designImg/battlefieldTryOut.png");
+    canvasImg = preloadImage("img/designImg/lightBattlefield.png");
   }
   ctx.drawImage(canvasImg ,0, 0, canvas.width, canvas.height);
 
   // Fluss zeichnen
-  ctx.fillStyle = "#1565C0";
-  ctx.fillRect(riverX, 0, riverWidth, canvas.height);
+  if(!riverImg){
+    riverImg = preloadImage("img/designImg/fluss2.png");
+  }
+  ctx.drawImage(riverImg, riverX, 0, riverWidth, canvas.height/5);
+  ctx.drawImage(riverImg, riverX, 100, riverWidth, canvas.height/5);
+  ctx.drawImage(riverImg, riverX, 200, riverWidth, canvas.height/5);
+  ctx.drawImage(riverImg, riverX, 300, riverWidth, canvas.height/5);
+  ctx.drawImage(riverImg, riverX, 400, riverWidth, canvas.height/5);
+
   ctx.clearRect(riverX, bridgeTop.y, riverWidth, bridgeTop.height);
   ctx.clearRect(riverX, bridgeBottom.y, riverWidth, bridgeBottom.height);
-  ctx.strokeStyle = "#fff";
-  ctx.strokeRect(riverX, bridgeTop.y, riverWidth, bridgeTop.height);
-  ctx.strokeRect(riverX, bridgeBottom.y, riverWidth, bridgeBottom.height);
+
+  if(!bridgeImg){
+    bridgeImg = preloadImage("img/designImg/schildForInfo.png");
+  }
+
+  ctx.drawImage(bridgeImg, riverX, bridgeTop.y, riverWidth, bridgeTop.height);
+  ctx.drawImage(bridgeImg, riverX, bridgeBottom.y, riverWidth, bridgeBottom.height);
 
   // Türme zeichnen
   function drawTower(tower) {
