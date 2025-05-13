@@ -78,6 +78,66 @@ let enemyHand = fixedDeck.slice(0, 4);
 
 let selectedCard = null;
 const cardHandEl = document.getElementById("cardHand");
+
+function updateCardHandUI() {
+  cardHandEl.innerHTML = "";
+  playerHand.forEach((card, index) => {
+    const cardCost = unitTypes[card].cost;
+    const cardImg = unitTypes[card].image.srcRunPlayer;
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "card-wrapper";
+    if (selectedCard === index) wrapper.classList.add("selected");
+    wrapper.dataset.index = index;
+
+    const colorCanvas = document.createElement("canvas");
+    const grayCanvas = document.createElement("canvas");
+    colorCanvas.width = grayCanvas.width = 100;
+    colorCanvas.height = grayCanvas.height = 140;
+    colorCanvas.classList.add("card-canvas", "color");
+    grayCanvas.classList.add("card-canvas", "gray");
+    wrapper.appendChild(colorCanvas);
+    wrapper.appendChild(grayCanvas);
+    cardHandEl.appendChild(wrapper);
+
+    wrapper.addEventListener("click", () => {
+      selectedCard = index;
+      updateCardHandUI();
+    });
+
+    const img = new Image();
+    img.src = cardImg;
+    img.onload = () => {
+      const cctx = colorCanvas.getContext("2d");
+      const gctx = grayCanvas.getContext("2d");
+      cctx.drawImage(img, 0, 0, 100, 140);
+      gctx.drawImage(img, 0, 0, 100, 140);
+      const sectorsToReveal = Math.min(playerElixir, cardCost);
+      revealSectors(gctx, grayCanvas, sectorsToReveal, cardCost);
+    };
+  });
+}
+
+function revealSectors(ctx, canvas, activeSectors, totalSectors) {
+  const cx = canvas.width / 2;
+  const cy = canvas.height / 2;
+  const radius = Math.max(canvas.width, canvas.height) * 1.5;
+  const anglePerSector = (2 * Math.PI) / totalSectors;
+
+  for (let i = 0; i < activeSectors; i++) {
+    const start = anglePerSector * i;
+    const end = start + anglePerSector;
+    ctx.save();
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.arc(cx, cy, radius, start, end);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  }
+}
+/*
 function updateCardHandUI() {
   cardHandEl.innerHTML = "";
   playerHand.forEach((card, index) => {
@@ -85,19 +145,16 @@ function updateCardHandUI() {
     div.className = "card";
     if (selectedCard === index) div.classList.add("selected");
     div.dataset.index = index;
-    div.innerHTML = `<p>${card}</p><p>Cost: ${card === "blitz" ? "-" : unitTypes[card].cost}</p>`;
+    div.innerHTML = `<p>${card}</p><p>Cost: ${unitTypes[card].cost}</p>`;
     div.addEventListener("click", () => {
       selectedCard = index;
       updateCardHandUI();
-      if (playerHand[index] === "blitz") {
-        spellIndicator.style.display = "block";
-      } else {
-        spellIndicator.style.display = "none";
-      }
     });
     cardHandEl.appendChild(div);
   });
 }
+*/
+
 // to do check later updateCardHandUI();
 
 // ---------------------------
@@ -489,7 +546,10 @@ function updateTowers(towers, enemyUnits) {
 function update(deltaTime) {
   elixirTimer += deltaTime;
   if (elixirTimer >= 2) {
-    if (playerElixir < maxElixir) { playerElixir++; }
+    if (playerElixir < maxElixir) { 
+      playerElixir++; 
+      updateCardHandUI();
+    }
     elixirTimer -= 2;
   }
   //playerElixirEl.textContent = playerElixir;
@@ -639,6 +699,7 @@ function gameLoop(timestamp) {
     draw();
     requestAnimationFrame(gameLoop);
   } else {
+    document.getElementById('ui').style.display = 'none';
     if(playerWinner){
       availableBoxes += 10; 
       localStorage.setItem('available boxes', JSON.stringify(availableBoxes));
@@ -692,6 +753,8 @@ function gameLoop(timestamp) {
 }
 
 function startGame(){
+  document.getElementById('ui').style.display = 'block';
+
   playerTowers = [
     createTower("player", "small", 150, 60, 50, 60, 1500, 10, 200),
     createTower("player", "big", 50, canvas.height / 2 - 40, 60, 70, 2000, 20, 300),
