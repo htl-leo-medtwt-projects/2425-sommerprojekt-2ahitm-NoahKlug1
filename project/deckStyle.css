@@ -80,6 +80,8 @@
 
 .deckRemoveButton {
   background-image: url(img/designImg/redXButton.png);
+  width: 1.5vh;
+  height: 1.5vh;
   background-position: center;
   background-size: 120%;
   background-repeat: no-repeat;
@@ -133,7 +135,7 @@
 }
 
 .deckTargetCard {
-  height: 80px;
+  height: 15vh;
   padding: 10px;
   border-radius: 2vh;
   text-align: center;
