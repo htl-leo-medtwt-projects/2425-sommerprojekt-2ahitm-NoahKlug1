@@ -250,7 +250,7 @@ function getDistance(a, b) {
 
 // ---------------------------
 // River & Bridge-Konstanten
-const riverWidth = 25;
+const riverWidth = 30;
 const riverX = canvas.width / 2 - riverWidth / 2;
 const bridgeTop = { y: 50, height: 50, centerY: 75 };
 const bridgeBottom = { y: canvas.height - 100, height: 50, centerY: canvas.height - 75 };

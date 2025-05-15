@@ -35,18 +35,21 @@
   }
   
   .bonus-point {
-    width: 15px;
-    height: 15px;
-    background: red;
-    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    background-image: url(img/designImg/redRubi.png);
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
   }
   
   .bonus-point.used {
-    background: #444;
+    filter: grayscale(100%);
   }
   
   .bonus-stars {
     position: absolute;
+    user-select: none;
     top: -25px;
     left: 50%;
     transform: translateX(-50%);
@@ -55,10 +58,10 @@
   }
   
   .bonus-star {
-    width: 15px;
-    height: 15px;
-    background: gold;
-    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    width: 25px;
+    height: 25px;
+    /*background: gold;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);*/
   }
   
   .bonus-reward {

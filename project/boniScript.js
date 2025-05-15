@@ -21,18 +21,18 @@ function updateBoxCount() {
   countEl.textContent = "Boxen "+ availableBoxes;
 
   if (availableBoxes > 0) {
-    box.style.display = "block";
     availableDisplay.classList.remove("bonus-blink");
     resetBoxState();
   } else {
-    box.style.animation = "infinite";
     resetBoxState();
     availableDisplay.classList.add("bonus-blink");
   }
 }
 
 function addStar() {
-  const star = document.createElement("div");
+  const star = document.createElement("img");
+  star.src = "img/designImg/goldStar.png";
+  star.alt = "Bonus-Stern";
   star.classList.add("bonus-star");
   starsContainer.appendChild(star);
 
@@ -43,14 +43,15 @@ function addStar() {
   }, 300);
 }
 
-function createExplosionParticles() {
+function createExplosionParticles(numberOfStars) {
   particlesContainer.innerHTML = "";
-  for (let i = 0; i < 20; i++) {
+
+  for (let i = 0; i < 40*numberOfStars; i++) {
     const particle = document.createElement("div");
     particle.classList.add("bonus-particle");
 
     const angle = Math.random() * 2 * Math.PI;
-    const distance = Math.random() * 100 + 50;
+    const distance = Math.random() * 300 + 100;
 
     const x = Math.cos(angle) * distance + "px";
     const y = Math.sin(angle) * distance + "px";
@@ -66,7 +67,7 @@ function explodeBox() {
   box.style.animation = "rotate 0.2s linear infinite";
 
   setTimeout(() => {
-    createExplosionParticles();
+    createExplosionParticles(upgradeLevel);
     box.style.display = "none";
 
     const baseValue = 7;
