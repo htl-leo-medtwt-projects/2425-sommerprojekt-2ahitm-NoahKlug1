@@ -199,6 +199,7 @@ h2{
 
   /* Inhalt des Slides */
   .slide-content {
+    font-family: 'mideavleFont';
     padding: 20px;
     max-width: 100%;
   }
