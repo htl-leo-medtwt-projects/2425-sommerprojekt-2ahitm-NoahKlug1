@@ -240,23 +240,19 @@ function botPlayCard() {
   }
 }
 
-// ---------------------------
-// Helper: Abstand zwischen Mittelpunkten
+
 function getDistance(a, b) {
   const ax = a.x + a.width / 2, ay = a.y + a.height / 2;
   const bx = b.x + b.width / 2, by = b.y + b.height / 2;
   return Math.sqrt((ax - bx) ** 2 + (ay - by) ** 2);
 }
 
-// ---------------------------
-// River & Bridge-Konstanten
+
 const riverWidth = 30;
 const riverX = canvas.width / 2 - riverWidth / 2;
 const bridgeTop = { y: 50, height: 50, centerY: 75 };
 const bridgeBottom = { y: canvas.height - 100, height: 50, centerY: canvas.height - 75 };
 
-// ---------------------------
-// Verhindert, dass Einheiten durch lebende Türme laufen – falls Kollision, werden sie am Rand vorbeigeschoben.
 function collidesWithTowers(unit, towers) {
   for (let tower of towers) {
     if (tower.hp > 0) {
